@@ -5,7 +5,7 @@
   },
   "typedocOptions": {
     "mode": "file",
-    "out": "docs/pixim/",
+    "out": "pages/docs/pixim/",
     "moduleResolution": "node",
     "gitRevision": "master",
     "includeVersion": true
