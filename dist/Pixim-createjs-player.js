@@ -33,6 +33,13 @@ this.Pixim = this.Pixim || {}, function(exports, PIXI, _Pixim) {
                 }
             }
             loader.loadManifest(lib.properties.manifest);
+        })).then((function(data) {
+            for (var evt = data.evt, comp = data.comp, lib = comp.getLibrary(), ss = comp.getSpriteSheet(), queue = evt.target, ssMetadata = lib.ssMetadata, i = 0; i < ssMetadata.length; i++) {
+                ss[ssMetadata[i].name] = new window.createjs.SpriteSheet({
+                    images: [ queue.getResult(ssMetadata[i].name) ],
+                    frames: ssMetadata[i].frames
+                });
+            }
         }));
     }
     function initStage(stage, options) {
@@ -776,14 +783,8 @@ this.Pixim = this.Pixim || {}, function(exports, PIXI, _Pixim) {
                     this._stage._tickFunction(), this.app.render();
                 }, Player.prototype._handleStop = function() {}, Player.prototype.initAsync = function(options) {
                     var this$1 = this;
-                    return void 0 === options && (options = {}), initAsync(this._basepath, this._composition).then((function(data) {
-                        for (var evt = data.evt, comp = data.comp, lib = comp.getLibrary(), ss = comp.getSpriteSheet(), queue = evt.target, ssMetadata = lib.ssMetadata, i = 0; i < ssMetadata.length; i++) {
-                            ss[ssMetadata[i].name] = new window.createjs.SpriteSheet({
-                                images: [ queue.getResult(ssMetadata[i].name) ],
-                                frames: ssMetadata[i].frames
-                            });
-                        }
-                        var exportRoot = new this$1._rootClass;
+                    return void 0 === options && (options = {}), initAsync(this._basepath, this._composition).then((function() {
+                        var lib = this$1._composition.getLibrary(), exportRoot = new this$1._rootClass;
                         this$1._stage = new lib.Stage, initStage(this$1._stage, options), Object.defineProperties(window, {
                             exportRoot: {
                                 value: exportRoot

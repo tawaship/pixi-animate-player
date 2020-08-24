@@ -62,23 +62,8 @@ namespace PIXI {
 			
 			initAsync(options: TCreatejsPlayerOption = {}) {
 				return initAsync(this._basepath, this._composition)
-					.then(data => {
-						const evt = data.evt;
-						const comp = data.comp;
-						
-						const lib = comp.getLibrary();
-						const ss = comp.getSpriteSheet();
-						const queue = evt.target;
-						const ssMetadata = lib.ssMetadata;
-						
-						for (let i = 0; i < ssMetadata.length; i++) {
-							ss[ssMetadata[i].name] = new window.createjs.SpriteSheet({
-								images: [
-									queue.getResult(ssMetadata[i].name)
-								],
-								frames: ssMetadata[i].frames
-							});
-						}
+					.then(() => {
+						const lib = this._composition.getLibrary();
 						
 						const exportRoot = new this._rootClass();
 						
