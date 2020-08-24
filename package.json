@@ -18,14 +18,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tawaship/pixi-createjs.git"
+    "url": "git+https://github.com/tawaship/Pixim-createjs-player.git"
   },
   "author": "tawashi@",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tawaship/pixi-createjs/issues"
+    "url": "https://github.com/tawaship/Pixim-createjs-player/issues"
   },
-  "homepage": "https://github.com/tawaship/pixi-createjs#readme",
+  "homepage": "https://tawaship.github.io/Pixim-createjs-player/",
   "devDependencies": {
     "@rollup/plugin-buble": "^0.21.3",
     "@rollup/plugin-commonjs": "^11.0.2",
