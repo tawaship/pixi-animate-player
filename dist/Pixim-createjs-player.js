@@ -27,7 +27,7 @@ this.Pixim = this.Pixim || {}, function(exports, PIXI, _Pixim) {
                     comp: comp
                 });
             })), basepath) {
-                basepath = (basepath + "/").replace(/\/\//g, "/");
+                basepath = (basepath + "/").replace(/([^\:])\/\//, "$1/");
                 for (var m = lib.properties.manifest, i = 0; i < m.length; i++) {
                     m[i].src = basepath + m[i].src;
                 }

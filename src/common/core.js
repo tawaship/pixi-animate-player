@@ -30,7 +30,7 @@ export function initAsync(basepath, comp) {
 		});
 		
 		if (basepath) {
-			basepath = (basepath + '/').replace(/\/\//g, '/');
+			basepath = (basepath + '/').replace(/([^\:])\/\//, "$1/");
 			const m = lib.properties.manifest;
 			for (let i = 0; i < m.length; i++) {
 				m[i].src = basepath + m[i].src;
