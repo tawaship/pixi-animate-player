@@ -19,6 +19,7 @@ namespace Pixim {
 		 * @see https://tawaship.github.io/Pixim.js/classes/pixim.application.html
 		 */
 		export class Player extends _Pixim.Application {
+			
 			private _composition: any;
 			private _rootClass: any;
 			private _basepath: string;
