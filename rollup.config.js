@@ -35,7 +35,7 @@ const pixim_banner = [
 
 export default (async () => {
 	if (process.env.PROD) {
-		await del(['./pages/docs/pixi/', './pages/docs/pixim/', './dist/']);
+		await del(['./docs/pixi/', './docs/pixim/', './dist/']);
 	}
 	
 	return [

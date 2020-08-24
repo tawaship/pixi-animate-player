@@ -5,9 +5,9 @@
   },
   "typedocOptions": {
     "mode": "file",
-    "readme": "pages/docs/README.pixi.md",
+    "readme": "docs/README.pixi.md",
     "name": "pixi-createjs-player",
-    "out": "pages/docs/pixi/",
+    "out": "docs/pixi/",
     "moduleResolution": "node",
     "gitRevision": "master",
     "includeVersion": true
