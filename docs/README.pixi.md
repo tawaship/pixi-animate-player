@@ -52,4 +52,4 @@ player
 
 ## Samples
 
-[github](https://tawaship.github.io/Pixim-createjs-player/samples/)
+[github](../..//samples/)
