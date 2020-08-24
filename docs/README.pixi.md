@@ -10,7 +10,6 @@
 
 - A complete set of content published with Adobe Animate version 20.02
 - pixi.js 5.3.2
-- Pixim.js 1.6.0
 
 I have not confirmed the operation on other versions.
 
@@ -24,7 +23,6 @@ git clone https://github.com/tawaship/Pixim-createjs-player
 
 ```html
 <script src="/path/to/lib/pixi.5.3.2.min.js"></script>
-<script src="/path/to/lib/Pixim.min.js"></script>
 <script src="/path/to/dist/pixi-createjs-player.min.js"></script>
 ```
 
