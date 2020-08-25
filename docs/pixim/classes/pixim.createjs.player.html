@@ -108,8 +108,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="pixim.createjs.player.html#_basepath" class="tsd-kind-icon">_basepath</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="pixim.createjs.player.html#_composition" class="tsd-kind-icon">_composition</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="pixim.createjs.player.html#_handletick" class="tsd-kind-icon">_handle<wbr>Tick</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="pixim.createjs.player.html#_id" class="tsd-kind-icon">_id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="pixim.createjs.player.html#_rootclass" class="tsd-kind-icon">_root<wbr>Class</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="pixim.createjs.player.html#_stage" class="tsd-kind-icon">_stage</a></li>
 							</ul>
@@ -127,9 +126,7 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="pixim.createjs.player.html#_destroyroot" class="tsd-kind-icon">_destroy<wbr>Root</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="pixim.createjs.player.html#_handleplay" class="tsd-kind-icon">_handle<wbr>Play</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="pixim.createjs.player.html#_handlestop" class="tsd-kind-icon">_handle<wbr>Stop</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="pixim.createjs.player.html#_tick" class="tsd-kind-icon">_tick</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="pixim.createjs.player.html#_handletick" class="tsd-kind-icon">_handle<wbr>Tick</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="pixim.createjs.player.html#addlayer" class="tsd-kind-icon">add<wbr>Layer</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="pixim.createjs.player.html#adjustheight" class="tsd-kind-icon">adjust<wbr>Height</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="pixim.createjs.player.html#adjustwidth" class="tsd-kind-icon">adjust<wbr>Width</a></li>
@@ -171,7 +168,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Application.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/tawaship/Pixim-createjs/blob/master/src/pixim/Player.ts#L26">src/pixim/Player.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/tawaship/Pixim-createjs/blob/master/src/pixim/Player.ts#L25">src/pixim/Player.ts:25</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -210,22 +207,12 @@
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_composition" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _composition</h3>
-					<div class="tsd-signature tsd-kind-icon">_composition<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<a name="_id" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _id</h3>
+					<div class="tsd-signature tsd-kind-icon">_id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in <a href="https://github.com/tawaship/Pixim-createjs/blob/master/src/pixim/Player.ts#L22">src/pixim/Player.ts:22</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_handletick" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _handle<wbr>Tick</h3>
-					<div class="tsd-signature tsd-kind-icon">_handle<wbr>Tick<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/tawaship/Pixim-createjs/blob/master/src/pixim/Player.ts#L26">src/pixim/Player.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -362,50 +349,16 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="_handleplay" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _handle<wbr>Play</h3>
+					<a name="_handletick" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _handle<wbr>Tick</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">_handle<wbr>Play<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">_handle<wbr>Tick<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tawaship/Pixim-createjs/blob/master/src/pixim/Player.ts#L75">src/pixim/Player.ts:75</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="_handlestop" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _handle<wbr>Stop</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">_handle<wbr>Stop<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/tawaship/Pixim-createjs/blob/master/src/pixim/Player.ts#L80">src/pixim/Player.ts:80</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="_tick" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _tick</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">_tick<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/tawaship/Pixim-createjs/blob/master/src/pixim/Player.ts#L71">src/pixim/Player.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/tawaship/Pixim-createjs/blob/master/src/pixim/Player.ts#L113">src/pixim/Player.ts:113</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -721,7 +674,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tawaship/Pixim-createjs/blob/master/src/pixim/Player.ts#L84">src/pixim/Player.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/tawaship/Pixim-createjs/blob/master/src/pixim/Player.ts#L56">src/pixim/Player.ts:56</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -892,7 +845,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Application.play</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/tawaship/Pixim-createjs/blob/master/src/pixim/Player.ts#L59">src/pixim/Player.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/tawaship/Pixim-createjs/blob/master/src/pixim/Player.ts#L101">src/pixim/Player.ts:101</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -940,7 +893,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Application.stop</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/tawaship/Pixim-createjs/blob/master/src/pixim/Player.ts#L65">src/pixim/Player.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/tawaship/Pixim-createjs/blob/master/src/pixim/Player.ts#L107">src/pixim/Player.ts:107</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1139,10 +1092,7 @@
 								<a href="pixim.createjs.player.html#_basepath" class="tsd-kind-icon">_basepath</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="pixim.createjs.player.html#_composition" class="tsd-kind-icon">_composition</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="pixim.createjs.player.html#_handletick" class="tsd-kind-icon">_handle<wbr>Tick</a>
+								<a href="pixim.createjs.player.html#_id" class="tsd-kind-icon">_id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="pixim.createjs.player.html#_rootclass" class="tsd-kind-icon">_root<wbr>Class</a>
@@ -1166,13 +1116,7 @@
 								<a href="pixim.createjs.player.html#_destroyroot" class="tsd-kind-icon">_destroy<wbr>Root</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="pixim.createjs.player.html#_handleplay" class="tsd-kind-icon">_handle<wbr>Play</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="pixim.createjs.player.html#_handlestop" class="tsd-kind-icon">_handle<wbr>Stop</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="pixim.createjs.player.html#_tick" class="tsd-kind-icon">_tick</a>
+								<a href="pixim.createjs.player.html#_handletick" class="tsd-kind-icon">_handle<wbr>Tick</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="pixim.createjs.player.html#addlayer" class="tsd-kind-icon">add<wbr>Layer</a>

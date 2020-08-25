@@ -1,4 +1,4 @@
-import { initAsync, initStage } from '../common/core';
+import { initAsync as _initAsync, initStage } from '../common/core';
 import * as _PIXI from 'pixi.js';
 
 /**
@@ -20,11 +20,10 @@ namespace PIXI {
 		 */
 		export class Player {
 			private _app: _PIXI.Application;
-			private _composition: any;
+			private _id: string;
 			private _rootClass: any;
 			private _basepath: string;
 			private _stage: any;
-			private _handleTick: Function;
 			
 			constructor(id: string, rootName: string, basepath: string, pixiOptions: Object = {}) {
 				const comp = window.AdobeAn.getComposition(id);
@@ -49,22 +48,18 @@ namespace PIXI {
 				document.body.appendChild(this._app.view);
 				this._app.stop();
 				
-				this._composition = comp;
+				this._id = id;
 				this._rootClass = root;
 				this._basepath = basepath;
 				
 				window.createjs.Ticker.framerate = prop.fps;
 				
-				this._handleTick = this._handleStop;
-				
-				window.createjs.Ticker.addEventListener('tick', this._tick.bind(this));
+				this._handleTick = this._handleTick.bind(this);
 			}
 			
 			initAsync(options: TCreatejsPlayerOption = {}) {
-				return initAsync(this._basepath, this._composition)
-					.then(() => {
-						const lib = this._composition.getLibrary();
-						
+				return _initAsync(this._id, this._basepath)
+					.then(lib => {
 						const exportRoot = new this._rootClass();
 						
 						this._stage = new lib.Stage();
@@ -91,28 +86,20 @@ namespace PIXI {
 			}
 			
 			play() {
-				this._handleTick = this._handlePlay;
+				window.createjs.Ticker.addEventListener('tick', this._handleTick);
 				
 				return this;
 			}
 			
 			stop() {
-				this._handleTick = this._handleStop;
+				window.createjs.Ticker.removeEventListener('tick', this._handleTick);
 				
 				return this;
 			}
 			
-			private _tick() {
-				this._handleTick();
-			}
-			
-			private _handlePlay() {
+			private _handleTick() {
 				this._stage._tickFunction();
 				this.app.render();
-			}
-			
-			private _handleStop() {
-				
 			}
 			
 			get app(): _PIXI.Application {

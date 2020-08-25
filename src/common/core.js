@@ -3,15 +3,17 @@ import * as PIXI from 'pixi.js';
 /**
  * @ignore
  */
-export function initAsync(basepath, comp) {
-	return new Promise(function(resolve, reject) {
-		const lib = comp.getLibrary();
-		
+export function initAsync(id, basepath) {
+	const comp = window.AdobeAn.getComposition(id);
+	if (!comp) {
+		throw new Error('no composition');
+	}
+	
+	const lib = comp.getLibrary();
+	
+	return new Promise((resolve, reject) => {
 		if (lib.properties.manifest.length === 0) {
-			resolve({
-				evt: {},
-				comp: comp
-			});
+			resolve({});
 		}
 		
 		const loader = new createjs.LoadQueue(false);
@@ -23,10 +25,7 @@ export function initAsync(basepath, comp) {
 		});
 		
 		loader.addEventListener('complete', function(evt) {
-			resolve({
-				evt: evt,
-				comp: comp
-			});
+			resolve(evt);
 		});
 		
 		if (basepath) {
@@ -39,11 +38,7 @@ export function initAsync(basepath, comp) {
 		
 		loader.loadManifest(lib.properties.manifest);
 	})
-	.then(data => {
-		const evt = data.evt;
-		const comp = data.comp;
-		
-		const lib = comp.getLibrary();
+	.then(evt => {
 		const ss = comp.getSpriteSheet();
 		const queue = evt.target;
 		const ssMetadata = lib.ssMetadata;
@@ -56,6 +51,8 @@ export function initAsync(basepath, comp) {
 				frames: ssMetadata[i].frames
 			});
 		}
+		
+		return lib;
 	});
 }
 

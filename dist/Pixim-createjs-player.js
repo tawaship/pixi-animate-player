@@ -8,13 +8,14 @@
  */
 this.Pixim = this.Pixim || {}, function(exports, PIXI, _Pixim) {
     "use strict";
-    function initAsync(basepath, comp) {
+    function initAsync(id, basepath) {
+        var comp = window.AdobeAn.getComposition(id);
+        if (!comp) {
+            throw new Error("no composition");
+        }
+        var lib = comp.getLibrary();
         return new Promise((function(resolve, reject) {
-            var lib = comp.getLibrary();
-            0 === lib.properties.manifest.length && resolve({
-                evt: {},
-                comp: comp
-            });
+            0 === lib.properties.manifest.length && resolve({});
             var loader = new createjs.LoadQueue(!1);
             if (loader.installPlugin(createjs.Sound), loader.addEventListener("fileload", (function(evt) {
                 !function(evt, comp) {
@@ -22,10 +23,7 @@ this.Pixim = this.Pixim || {}, function(exports, PIXI, _Pixim) {
                     evt && "image" == evt.item.type && (images[evt.item.id] = evt.result);
                 }(evt, comp);
             })), loader.addEventListener("complete", (function(evt) {
-                resolve({
-                    evt: evt,
-                    comp: comp
-                });
+                resolve(evt);
             })), basepath) {
                 basepath = (basepath + "/").replace(/([^\:])\/\//, "$1/");
                 for (var m = lib.properties.manifest, i = 0; i < m.length; i++) {
@@ -33,13 +31,14 @@ this.Pixim = this.Pixim || {}, function(exports, PIXI, _Pixim) {
                 }
             }
             loader.loadManifest(lib.properties.manifest);
-        })).then((function(data) {
-            for (var evt = data.evt, comp = data.comp, lib = comp.getLibrary(), ss = comp.getSpriteSheet(), queue = evt.target, ssMetadata = lib.ssMetadata, i = 0; i < ssMetadata.length; i++) {
+        })).then((function(evt) {
+            for (var ss = comp.getSpriteSheet(), queue = evt.target, ssMetadata = lib.ssMetadata, i = 0; i < ssMetadata.length; i++) {
                 ss[ssMetadata[i].name] = new window.createjs.SpriteSheet({
                     images: [ queue.getResult(ssMetadata[i].name) ],
                     frames: ssMetadata[i].frames
                 });
             }
+            return lib;
         }));
     }
     function initStage(stage, options) {
@@ -768,23 +767,14 @@ this.Pixim = this.Pixim || {}, function(exports, PIXI, _Pixim) {
                         width: prop.width,
                         height: prop.height,
                         backgroundColor: parseInt(prop.color.slice(1), 16)
-                    }), piximOptions), this._composition = comp, this._rootClass = root, this._basepath = basepath, 
-                    window.createjs.Ticker.framerate = prop.fps, this._handleTick = this._handleStop, 
-                    window.createjs.Ticker.addEventListener("tick", this._tick.bind(this));
+                    }), piximOptions), this._id = id, this._rootClass = root, this._basepath = basepath, 
+                    window.createjs.Ticker.framerate = prop.fps, this._handleTick = this._handleTick.bind(this);
                 }
                 return superclass && (Player.__proto__ = superclass), Player.prototype = Object.create(superclass && superclass.prototype), 
-                Player.prototype.constructor = Player, Player.prototype.play = function() {
-                    return this._handleTick = this._handlePlay, this;
-                }, Player.prototype.stop = function() {
-                    return this._handleTick = this._handleStop, this;
-                }, Player.prototype._tick = function() {
-                    this._handleTick();
-                }, Player.prototype._handlePlay = function() {
-                    this._stage._tickFunction(), this.app.render();
-                }, Player.prototype._handleStop = function() {}, Player.prototype.initAsync = function(options) {
+                Player.prototype.constructor = Player, Player.prototype.initAsync = function(options) {
                     var this$1 = this;
-                    return void 0 === options && (options = {}), initAsync(this._basepath, this._composition).then((function() {
-                        var lib = this$1._composition.getLibrary(), exportRoot = new this$1._rootClass;
+                    return void 0 === options && (options = {}), initAsync(this._id, this._basepath).then((function(lib) {
+                        var exportRoot = new this$1._rootClass;
                         this$1._stage = new lib.Stage, initStage(this$1._stage, options), Object.defineProperties(window, {
                             exportRoot: {
                                 value: exportRoot
@@ -808,6 +798,12 @@ this.Pixim = this.Pixim || {}, function(exports, PIXI, _Pixim) {
                             root: exportRoot.getPixi()
                         }), this$1.app.render(), this$1._stage.addChild(exportRoot), this$1.attachAsync(content);
                     }));
+                }, Player.prototype.play = function() {
+                    return window.createjs.Ticker.addEventListener("tick", this._handleTick), this;
+                }, Player.prototype.stop = function() {
+                    return window.createjs.Ticker.removeEventListener("tick", this._handleTick), this;
+                }, Player.prototype._handleTick = function() {
+                    this._stage._tickFunction(), this.app.render();
                 }, Player;
             }(_Pixim.Application);
             createjs.Player = Player;
