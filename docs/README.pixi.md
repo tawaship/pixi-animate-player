@@ -1,6 +1,6 @@
 # pixi-createjs-player
 
-**"pixi-createjs-player" is a plugin for playing content published by Adobe Animate with "[pixi.js](https://github.com/pixijs/pixi.js)".**
+"pixi-createjs-player" is a plugin for playing content published by Adobe Animate with "[pixi.js](https://github.com/pixijs/pixi.js)".
 
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
