@@ -39,7 +39,7 @@ var player = new PIXI.createjs.Player(
 );
 
 player
-	.initAsync({
+	.prepareAsync({
 		useSynchedTimeline: true
 	})
 	.then(function() {

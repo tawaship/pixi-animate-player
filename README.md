@@ -44,7 +44,7 @@ var player = new Pixim.createjs.Player(
 );
 
 player
-	.initAsync({
+	.prepareAsync({
 		useSynchedTimeline: true
 	})
 	.then(function() {
