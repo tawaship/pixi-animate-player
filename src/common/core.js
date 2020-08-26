@@ -674,122 +674,282 @@ const appendixDescriptor = {
 	}
 };
 
-createjs.MovieClip = function _MovieClip() {
-	overrideCreatejs(this, new PIXI.Container());
-	createjsOrigin.MovieClip.apply(this, arguments);
-}
-
-createjs.MovieClip.prototype = Object.defineProperties(Object.create(createjsOrigin.MovieClip.prototype), Object.assign({
-	initialize: {
-		value: function() {
-			overrideCreatejs(this, new PIXI.Container());
-			this._pixiData.subInstance = this._pixiData.instance;//.addChild(new PIXI.Container());
-			return createjsOrigin.MovieClip.prototype.initialize.apply(this, arguments);
-		}
-	},
-	addChild: {
-		value: function(child) {
-			this._pixiData.subInstance.addChild(child._pixiData.instance);
-			return createjsOrigin.MovieClip.prototype.addChild.call(this, child);
-		}
-	},
-	addChildAt: {
-		value: function(child, index) {
-			this._pixiData.subInstance.addChildAt(child._pixiData.instance, index);
-			return createjsOrigin.MovieClip.prototype.addChildAt.call(this, child, index);
-		}
-	},
-	removeChild: {
-		value: function(child) {
-			this._pixiData.subInstance.removeChild(child._pixiData.instance);
-			return createjsOrigin.MovieClip.prototype.removeChild.call(this, child);
-		}
-	},
-	removeChildAt: {
-		value: function(index) {
-			this._pixiData.subInstance.removeChildAt(index);
-			return createjsOrigin.MovieClip.prototype.removeChildAt.call(this, index);
+/**
+ * @ignore
+ */
+function makeClass(parent, unuseAppendix = false) {
+	class CjsWrap extends parent {
+		_overrideCreatejs(pixiClass) {
+			overrideCreatejs(this, new pixiClass());
 		}
 	}
-	,
-	removeAllChldren: {
-		value: function() {
-			this._pixiData.subInstance.removeChildren();
-			return createjsOrigin.MovieClip.prototype.removeAllChldren();
-		}
-	}
-}, appendixDescriptor));
-
-createjs.Sprite = function _Sprite() {
-	overrideCreatejs(this, new PIXI.Sprite());
-	createjsOrigin.Sprite.apply(this, arguments);
-}
-
-createjs.Sprite.prototype = Object.defineProperties(Object.create(createjsOrigin.Sprite.prototype), Object.assign({
-	initialize: {
-		value: function() {
-			overrideCreatejs(this, new PIXI.Sprite());
-			return createjsOrigin.Sprite.prototype.initialize.apply(this, arguments);
-		}
-	},
-	gotoAndStop: {
-		value: function() {
-			createjsOrigin.Sprite.prototype.gotoAndStop.apply(this, arguments);
-			
-			const frame = this.spriteSheet.getFrame(this.currentFrame);
-			const baseTexture = PIXI.BaseTexture.from(frame.image);
-			const texture = new PIXI.Texture(baseTexture, frame.rect);
-			
-			this._pixiData.instance.texture = texture;
-		}
-	}
-}, appendixDescriptor));
-
-createjs.Shape = function _Shape() {
-	overrideCreatejs(this, new PIXI.Container());
-	this._pixiData.masked = [];
 	
-	createjsOrigin.Shape.apply(this, arguments);
+	if (!unuseAppendix) {
+		Object.defineProperties(CjsWrap.prototype, appendixDescriptor);
+	}
+	
+	return CjsWrap;
 }
 
-createjs.Shape.prototype = Object.defineProperties(Object.create(createjsOrigin.Shape.prototype), Object.assign({
-	graphics: {
-		get: function() {
-			return this._graphics;
-		},
+createjs.MovieClip = class MovieClip extends makeClass(createjsOrigin.MovieClip) {
+	constructor() {
+		this._overrideCreatejs(PIXI.Container);
 		
-		set: function(value) {
-			if (this._pixiData.masked.length) {
-				this._pixiData.instance.removeChildren();
-				
-				if (value) {
-					for (let i = 0; i < this._pixiData.masked.length; i++) {
-						this._pixiData.masked[i].mask = this._pixiData.instance;
-					}
-				} else {
-					for (let i = 0; i < this._pixiData.masked.length; i++) {
-						this._pixiData.masked[i].mask = null;
-					}
-				}
-			}
+		super(...arguments);
+	}
+	
+	initialize() {
+		this._overrideCreatejs(PIXI.Container);
+		this._pixiData.subInstance = this._pixiData.instance;//.addChild(new PIXI.Container());
+		
+		return super.initialize(...arguments);
+	}
+	
+	addChild(child) {
+		this._pixiData.subInstance.addChild(child._pixiData.instance);
+		
+		return super.addChild(child);
+	}
+	
+	addChildAt(child, index) {
+		this._pixiData.subInstance.addChildAt(child._pixiData.instance, index);
+		
+		return super.addChildAt(child, index);
+	}
+	
+	removeChild(child) {
+		this._pixiData.subInstance.removeChild(child._pixiData.instance);
+		
+		return super.removeChild(child);
+	}
+	
+	removeChildAt(index) {
+		this._pixiData.subInstance.removeChildAt(index);
+		
+		return super.removeChildAt(index);
+	}
+	
+	removeAllChldren() {
+		this._pixiData.subInstance.removeChildren();
+		
+		return super.removeAllChldren();
+	}
+}
+
+createjs.Sprite = class Sprite extends makeClass(createjsOrigin.Sprite) {
+	constructor() {
+		this._overrideCreatejs(PIXI.Sprite);
+		
+		super(...arguments);
+	}
+	
+	initialize() {
+		this._overrideCreatejs(PIXI.Sprite);
+		
+		return super.initialize(...arguments);
+	}
+	
+	gotoAndStop() {
+		super.gotoAndStop(...arguments);
+		
+		const frame = this.spriteSheet.getFrame(this.currentFrame);
+		const baseTexture = PIXI.BaseTexture.from(frame.image);
+		const texture = new PIXI.Texture(baseTexture, frame.rect);
+		
+		this._pixiData.instance.texture = texture;
+	}
+}
+
+createjs.Shape = class Sprite extends makeClass(createjsOrigin.Shape) {
+	constructor() {
+		this._overrideCreatejs(PIXI.Container);
+		this._pixiData.masked = [];
+		
+		super(...arguments);
+	}
+	
+	get graphics() {
+		return this._graphics;
+	}
+	
+	set graphics(value) {
+		if (this._pixiData.masked.length) {
+			this._pixiData.instance.removeChildren();
 			
 			if (value) {
-				this._pixiData.instance.addChild(value._pixiData.instance);
+				for (let i = 0; i < this._pixiData.masked.length; i++) {
+					this._pixiData.masked[i].mask = this._pixiData.instance;
+				}
+			} else {
+				for (let i = 0; i < this._pixiData.masked.length; i++) {
+					this._pixiData.masked[i].mask = null;
+				}
 			}
-			
-			return this._graphics = value;
 		}
+		
+		if (value) {
+			this._pixiData.instance.addChild(value._pixiData.instance);
+		}
+		
+		return this._graphics = value;
 	}
-}, appendixDescriptor));
+}
 
-createjs.Graphics = function _Graphics() {
-	overrideCreatejs(this, new PIXI.Graphics());
-	createjsOrigin.Graphics.apply(this, arguments);
+createjs.Graphics = class Sprite extends makeClass(createjsOrigin.Graphics) {
+	constructor() {
+		this._overrideCreatejs(PIXI.Graphics);
+		
+		this._pixiData.instance.beginFill(0xFFEEEE, 1);
+		
+		this._pixiData.strokeFill = 0;
+		this._pixiData.strokeAlpha = 1;
+		
+		super(...arguments);
+	}
 	
-	this._pixiData.instance.beginFill(0xFFEEEE, 1);
+	moveTo(x, y) {
+		if (this._pixiData.instance.clone().endFill().containsPoint({x: x, y: y})) {
+			this._pixiData.instance.beginHole();
+		} else {
+			this._pixiData.instance.endHole();
+		}
+		
+		this._pixiData.instance.moveTo(x, y);
+		
+		return super.moveTo(x, y);
+	}
 	
-	this._pixiData.strokeFill = 0;
-	this._pixiData.strokeAlpha = 1;
+	lineTo(x, y) {
+		this._pixiData.instance.lineTo(x, y);
+		
+		return super.lineTo(x, y);
+	}
+	
+	arcTon(x1, y1, x2, y2, radius) {
+		this._pixiData.instance.arcTo(x1, y1, x2, y2, radius);
+		
+		return super.arcTo(x1, y1, x2, y2, radius);
+	}
+	
+	arc(x, y, radius, startAngle, endAngle, anticlockwise) {
+		this._pixiData.instance.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+		
+		return super.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+	}
+	
+	quadraticCurveTo(cpx, cpy, x, y) {
+		this._pixiData.instance.quadraticCurveTo(cpx, cpy, x, y);
+		
+		return super.quadraticCurveTo(cpx, cpy, x, y);
+	}
+	
+	bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y) {
+		this._pixiData.instance.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
+		
+		return super.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
+	}
+	
+	rect(x, y, w, h) {
+		this._pixiData.instance.drawRect(x, y, w, h);
+		
+		return super.rect(x, y, w, h);
+	}
+	
+	closePath() {
+		this._pixiData.instance.closePath();
+		
+		const points = this._pixiData.instance.currentPath.points;
+		
+		return super.closePath();
+	}
+	
+	clear() {
+		this._pixiData.instance.clear();
+		
+		return super.clear();
+	}
+	
+	_parseColor(color) {
+		const res = {
+			color: 0,
+			alpha: 1
+		};
+		
+		if (!color) {
+			res.alpha = 0;
+			return res;
+		}
+		
+		if (color.charAt(0) === '#') {
+			res.color = parseInt(color.slice(1), 16);
+			return res;
+		}
+		
+		color = color.replace(/rgba|\(|\)|\s/g, '').split(',');
+		
+		res.color = Number(color[0]) * COLOR_RED + Number(color[1]) * COLOR_GREEN + Number(color[2]);
+		res.alpha = Number(color[3]);
+		
+		return res;
+	}
+	
+	beginFill(color) {
+		const c = this._parseColor(color);
+		this._pixiData.instance.beginFill(c.color, c.alpha);
+		
+		return super.beginFill(color);
+	}
+		
+	endFill() {
+		this._pixiData.instance.endFill();
+		
+		return super.endFill();
+	}
+	
+	setStrokeStyle(thickness, caps, joints, miterLimit, ignoreScale) {
+		this._pixiData.instance.lineStyle({
+			width: thickness,
+			color: this._pixiData.strokeFill,
+			alpha: this._pixiData.strokeAlpha,
+			cap: (caps in LineCap) ? LineCap[caps] : caps,
+			join: (joints in LineJoin) ? LineJoin[joints] : joints,
+			miterLimit: miterLimit
+		});
+		
+		return super.setStrokeStyle(thickness, caps, joints, miterLimit, ignoreScale);
+	}
+	
+	beginStroke(color) {
+		const c = this._parseColor(color);
+		this._pixiData.strokeFill = c.color;
+		this._pixiData.strokeAlpha = c.alpha;
+		
+		return super.beginStroke(color);
+	}
+	
+	drawRoundRect(x, y, w, h, radius) {
+		this._pixiData.instance.drawRoundedRect(x, y, w, h, radius);
+		
+		return super.drawRoundRect(x, y, w, h, radius);
+	}
+	
+	drawCircle(x, y, radius) {
+		this._pixiData.instance.drawCircle(x, y, radius);
+		
+		return super.drawCircle(x, y, radius);
+	}
+	
+	drawEllipse(x, y, w, h) {
+		this._pixiData.instance.drawEllipse(x, y, w, h);
+		
+		return super.drawEllipse(x, y, w, h);
+	}
+	
+	drawPolyStar(x, y, radius, sides, pointSize, angle) {
+		this._pixiData.instance.drawRegularPolygon(x, y, radius, sides, angle * DEG_TO_RAD);
+		
+		return super.drawPolyStar(x, y, radius, sides, pointSize, angle);
+	}
 }
 
 /**
@@ -809,188 +969,6 @@ const LineJoin = {
 	1: PIXI.LINE_JOIN.ROUND,
 	2: PIXI.LINE_JOIN.BEVEL
 };
-
-createjs.Graphics.prototype = Object.defineProperties(Object.create(createjsOrigin.Graphics.prototype), Object.assign({
-	moveTo: {
-		value: function(x, y) {
-			if (this._pixiData.instance.clone().endFill().containsPoint({x: x, y: y})) {
-				this._pixiData.instance.beginHole();
-			} else {
-				this._pixiData.instance.endHole();
-			}
-			
-			this._pixiData.instance.moveTo(x, y);
-			
-			return createjsOrigin.Graphics.prototype.moveTo.call(this, x, y);
-		}
-	},
-	
-	lineTo: {
-		value: function(x, y) {
-			this._pixiData.instance.lineTo(x, y);
-			
-			return createjsOrigin.Graphics.prototype.lineTo.call(this, x, y);
-		}
-	},
-	
-	arcTo: {
-		value: function(x1, y1, x2, y2, radius) {
-			this._pixiData.instance.arcTo(x1, y1, x2, y2, radius);
-			
-			return createjsOrigin.Graphics.prototype.arcTo.call(this, x1, y1, x2, y2, radius);
-		}
-	},
-	
-	arc: {
-		value: function(x, y, radius, startAngle, endAngle, anticlockwise) {
-			this._pixiData.instance.arc(x, y, radius, startAngle, endAngle, anticlockwise);
-			
-			return createjsOrigin.Graphics.prototype.arc.call(this, x, y, radius, startAngle, endAngle, anticlockwise);
-		}
-	},
-	
-	quadraticCurveTo: {
-		value: function(cpx, cpy, x, y) {
-			this._pixiData.instance.quadraticCurveTo(cpx, cpy, x, y);
-			
-			return createjsOrigin.Graphics.prototype.quadraticCurveTo.call(this, cpx, cpy, x, y);
-		}
-	},
-	
-	bezierCurveTo: {
-		value: function(cp1x, cp1y, cp2x, cp2y, x, y) {
-			this._pixiData.instance.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
-			
-			return createjsOrigin.Graphics.prototype.bezierCurveTo.call(this, cp1x, cp1y, cp2x, cp2y, x, y);
-		}
-	},
-	
-	rect: {
-		value: function(x, y, w, h) {
-			this._pixiData.instance.drawRect(x, y, w, h);
-			
-			return createjsOrigin.Graphics.prototype.rect.call(this, x, y, w, h);
-		}
-	},
-	
-	closePath: {
-		value: function() {
-			this._pixiData.instance.closePath();
-			
-			const points = this._pixiData.instance.currentPath.points;
-			
-			return createjsOrigin.Graphics.prototype.closePath.call(this);
-		}
-	},
-	
-	clear: {
-		value: function() {
-			this._pixiData.instance.clear();
-			
-			return createjsOrigin.Graphics.prototype.clear.call(this);
-		}
-	},
-	
-	_parseColor: {
-		value: function(color) {
-			const res = {
-				color: 0,
-				alpha: 1
-			};
-			
-			if (!color) {
-				res.alpha = 0;
-				return res;
-			}
-			
-			if (color.charAt(0) === '#') {
-				res.color = parseInt(color.slice(1), 16);
-				return res;
-			}
-			
-			color = color.replace(/rgba|\(|\)|\s/g, '').split(',');
-			
-			res.color = Number(color[0]) * COLOR_RED + Number(color[1]) * COLOR_GREEN + Number(color[2]);
-			res.alpha = Number(color[3]);
-			
-			return res;
-		}
-	},
-	
-	beginFill: {
-		value: function(color) {
-			const c = this._parseColor(color);
-			this._pixiData.instance.beginFill(c.color, c.alpha);
-			
-			return createjsOrigin.Graphics.prototype.beginFill.call(this, color);
-		}
-	},
-	
-	endFill: {
-		value: function() {
-			this._pixiData.instance.endFill();
-			
-			return createjsOrigin.Graphics.prototype.endFill.call(this);
-		}
-	},
-	
-	setStrokeStyle: {
-		value: function(thickness, caps, joints, miterLimit, ignoreScale) {
-			this._pixiData.instance.lineStyle({
-				width: thickness,
-				color: this._pixiData.strokeFill,
-				alpha: this._pixiData.strokeAlpha,
-				cap: (caps in LineCap) ? LineCap[caps] : caps,
-				join: (joints in LineJoin) ? LineJoin[joints] : joints,
-				miterLimit: miterLimit
-			});
-			
-			return createjsOrigin.Graphics.prototype.setStrokeStyle.call(this, thickness, caps, joints, miterLimit, ignoreScale);
-		}
-	},
-	
-	beginStroke: {
-		value: function(color) {
-			const c = this._parseColor(color);
-			this._pixiData.strokeFill = c.color;
-			this._pixiData.strokeAlpha = c.alpha;
-			
-			return createjsOrigin.Graphics.prototype.beginStroke.call(this, color);
-		}
-	},
-	
-	drawRoundRect: {
-		value: function(x, y, w, h, radius) {
-			this._pixiData.instance.drawRoundedRect(x, y, w, h, radius);
-			
-			return createjsOrigin.Graphics.prototype.drawRoundRect.call(this, x, y, w, h, radius);
-		}
-	},
-	
-	drawCircle: {
-		value: function(x, y, radius) {
-			this._pixiData.instance.drawCircle(x, y, radius);
-			
-			return createjsOrigin.Graphics.prototype.drawCircle.call(this, x, y, radius);
-		}
-	},
-	
-	drawEllipse: {
-		value: function(x, y, w, h) {
-			this._pixiData.instance.drawEllipse(x, y, w, h);
-			
-			return createjsOrigin.Graphics.prototype.drawEllipse.call(this, x, y, w, h);
-		}
-	},
-	
-	drawPolyStar: {
-		value: function(x, y, radius, sides, pointSize, angle) {
-			this._pixiData.instance.drawRegularPolygon(x, y, radius, sides, angle * DEG_TO_RAD);
-			
-			return createjsOrigin.Graphics.prototype.drawPolyStar.call(this, x, y, radius, sides, pointSize, angle);
-		}
-	}
-}, appendixDescriptor));
 
 Object.defineProperties(createjs.Graphics.prototype, {
 	curveTo: {
@@ -1074,220 +1052,190 @@ Object.defineProperties(createjs.Graphics.prototype, {
 	}
 });
 
-createjs.Text = function _Text(text, font, color) {
-	overrideCreatejs(this, new PIXI.Container());
+createjs.Text = class Sprite extends makeClass(createjsOrigin.Text) {
+	constructor(text, font, color) {
+		this._overrideCreatejs(PIXI.Container);
+		
+		this._originParams = Object.assign(this._originParams, {
+			text: text,
+			font: font,
+			color: color,
+			textAlign: 'left',
+			lineHeight: 0,
+			lineWidth: 0
+		});
+		
+		const _font = this._parseFont(font);
+		
+		this._pixiData.instance.text = this._pixiData.instance.addChild(new PIXI.Text(text, {
+			fontSize: _font.fontSize,
+			fontFamily: _font.fontFamily,
+			fill: this._parseColor(color),
+			wordWrap: true
+		}));
+		
+		super(...arguments);
+	}
 	
-	this._originParams = Object.assign(this._originParams, {
-		text: text,
-		font: font,
-		color: color,
-		textAlign: 'left',
-		lineHeight: 0,
-		lineWidth: 0
-	});
+	get text() {
+		return this._originParams.text;
+	}
 	
-	const _font = this._parseFont(font);
+	set text(text) {
+		this._pixiData.instance.text.text = text;
+		this._align(this.textAlign);
+		
+		return this._originParams.text = text;
+	}
 	
-	this._pixiData.instance.text = this._pixiData.instance.addChild(new PIXI.Text(text, {
-		fontSize: _font.fontSize,
-		fontFamily: _font.fontFamily,
-		fill: this._parseColor(color),
-		wordWrap: true
-	}));
+	_parseFont(font) {
+		const p = font.split(' ');
+		
+		return {
+			fontSize: Number(p.shift().replace('px', '')),
+			fontFamily: p.join(' ').replace(/'/g, '') //'
+		};
+	}
 	
-	createjsOrigin.Text.apply(this, arguments);
-}
-
-createjs.Text.prototype = Object.defineProperties(Object.create(createjsOrigin.Text.prototype), Object.assign({
-	text: {
-		get: function() {
-			return this._originParams.text;
-		},
-		set: function(text) {
-			this._pixiData.instance.text.text = text;
-			this._align(this.textAlign);
-			
-			return this._originParams.text = text;
+	get font() {
+		return this._originParams.font;
+	}
+	
+	set font(font) {
+		const _font = this._parseFont(font);
+		this._pixiData.instance.text.style.fontSize = _font.fontSize;
+		this._pixiData.instance.text.style.fontFamily = _font.fontFamily;
+		
+		return this._originParams.font = font;
+	}
+	
+	_parseColor(color) {
+		return parseInt(color.slice(1), 16);
+	}
+	
+	get color() {
+		return this._originParams.color;
+	}
+	set color(color) {
+		this._pixiData.instance.text.style.fill = this._parseColor(color);
+		
+		return this._originParams.color = color;
+	}
+	
+	_align(align) {
+		if (align === 'left') {
+			this._pixiData.instance.text.x = 0;
+			return;
 		}
-	},
-	_parseFont: {
-		value: function(font) {
-			const p = font.split(' ');
-			
-			return {
-				fontSize: Number(p.shift().replace('px', '')),
-				fontFamily: p.join(' ').replace(/'/g, '') //'
-			};
+		
+		if (align === 'center') {
+			this._pixiData.instance.text.x = -this.lineWidth / 2;
+			return;
 		}
-	},
-	font: {
-		get: function() {
-			return this._originParams.font;
-		},
-		set: function(font) {
-			const _font = this._parseFont(font);
-			this._pixiData.instance.text.style.fontSize = _font.fontSize;
-			this._pixiData.instance.text.style.fontFamily = _font.fontFamily;
-			
-			return this._originParams.font = font;
-		}
-	},
-	_parseColor: {
-		value: function(color) {
-			return parseInt(color.slice(1), 16);
-		}
-	},
-	color: {
-		get: function() {
-			return this._originParams.color;
-		},
-		set: function(color) {
-			this._pixiData.instance.text.style.fill = this._parseColor(color);
-			
-			return this._originParams.color = color;
-		}
-	},
-	_align: {
-		value: function(align) {
-			if (align === 'left') {
-				this._pixiData.instance.text.x = 0;
-				return;
-			}
-			
-			if (align === 'center') {
-				this._pixiData.instance.text.x = -this.lineWidth / 2;
-				return;
-			}
-			
-			if (align === 'right') {
-				this._pixiData.instance.text.x =  -this.lineWidth;
-				return;
-			}
-		}
-	},
-	textAlign: {
-		get: function() {
-			return this._originParams.textAlign;
-		},
-		set: function(align) {
-			this._pixiData.instance.text.style.align = align;
-			this._align(align);
-			
-			return this._originParams.textAlign = align;
-		}
-	},
-	lineHeight: {
-		get: function() {
-			return this._originParams.lineHeight;
-		},
-		set: function(height) {
-			this._pixiData.instance.text.lineHeight = height;
-			
-			return this._originParams.lineHeight = height;
-		}
-	},
-	lineWidth: {
-		get: function() {
-			return this._originParams.lineWidth;
-		},
-		set: function(width) {
-			this._pixiData.instance.text.lineWidthWrap = width;
-			
-			return this._originParams.lineWidth = width;
+		
+		if (align === 'right') {
+			this._pixiData.instance.text.x =  -this.lineWidth;
+			return;
 		}
 	}
-}, appendixDescriptor));
+	
+	get textAlign() {
+		return this._originParams.textAlign;
+	}
+	
+	set textAlign(align) {
+		this._pixiData.instance.text.style.align = align;
+		this._align(align);
+		
+		return this._originParams.textAlign = align;
+	}
+	
+	get lineHeight() {
+		return this._originParams.lineHeight;
+	}
+	
+	set lineHeight(height) {
+		this._pixiData.instance.text.lineHeight = height;
+		
+		return this._originParams.lineHeight = height;
+	}
+	
+	get lineWidth() {
+		return this._originParams.lineWidth;
+	}
+	
+	set lineWidth(width) {
+		this._pixiData.instance.text.lineWidthWrap = width;
+		
+		return this._originParams.lineWidth = width;
+	}
+}
 
-createjs.ButtonHelper = function _ButtonHelper() {
-	overrideCreatejs(this, new PIXI.Container());
-	
-	createjsOrigin.ButtonHelper.apply(this, arguments);
-	
-	const createjs = arguments[0];
-	const pixi = createjs._pixiData.instance;
-	
-	const baseFrame = arguments[1];
-	const overFrame = arguments[2];
-	const downFrame = arguments[3];
-	const hit = arguments[5];
-	const hitFrame = arguments[6];
-	
-	hit.gotoAndStop(hitFrame);
-	const hitPixi = pixi.addChild(hit._pixiData.instance);
-	hitPixi.alpha = 0.00001
-	
-	let isOver = false;
-	let isDown = false;
-	
-	hitPixi.on('pointerover', function() {
-		isOver = true;
-		if (isDown) {
+createjs.ButtonHelper = class Sprite extends makeClass(createjsOrigin.ButtonHelper, true) {
+	constructor() {
+		this._overrideCreatejs(PIXI.Container);
+		
+		const createjs = arguments[0];
+		const pixi = createjs._pixiData.instance;
+		
+		const baseFrame = arguments[1];
+		const overFrame = arguments[2];
+		const downFrame = arguments[3];
+		const hit = arguments[5];
+		const hitFrame = arguments[6];
+		
+		hit.gotoAndStop(hitFrame);
+		const hitPixi = pixi.addChild(hit._pixiData.instance);
+		hitPixi.alpha = 0.00001
+		
+		let isOver = false;
+		let isDown = false;
+		
+		hitPixi.on('pointerover', function() {
+			isOver = true;
+			if (isDown) {
+				createjs.gotoAndStop(downFrame);
+			} else {
+				createjs.gotoAndStop(overFrame);
+			}
+		});
+		
+		hitPixi.on('pointerout', function() {
+			isOver = false;
+			
+			if (isDown) {
+				createjs.gotoAndStop(overFrame);
+			} else {
+				createjs.gotoAndStop(baseFrame);
+			}
+		});
+		
+		hitPixi.on('pointerdown', function() {
+			isDown = true;
 			createjs.gotoAndStop(downFrame);
-		} else {
-			createjs.gotoAndStop(overFrame);
-		}
-	});
-	
-	hitPixi.on('pointerout', function() {
-		isOver = false;
+		});
 		
-		if (isDown) {
-			createjs.gotoAndStop(overFrame);
-		} else {
-			createjs.gotoAndStop(baseFrame);
-		}
-	});
-	
-	hitPixi.on('pointerdown', function() {
-		isDown = true;
-		createjs.gotoAndStop(downFrame);
-	});
-	
-	hitPixi.on('pointerup', function() {
-		isDown = false;
-		if (isOver) {
-			createjs.gotoAndStop(overFrame);
-		} else {
-			createjs.gotoAndStop(baseFrame);
-		}
-	});
-	
-	hitPixi.on('pointerupoutside', function() {
-		isDown = false;
-		if (isOver) {
-			createjs.gotoAndStop(overFrame);
-		} else {
-			createjs.gotoAndStop(baseFrame);
-		}
-	});
-	
-	hitPixi.interactive = true;
-	hitPixi.cursor = 'pointer';
-}
-
-createjs.ButtonHelper.prototype = Object.create(createjsOrigin.ButtonHelper.prototype);
-
-/*
-const originTo = createjs.Tween.prototype.to;
-createjs.Tween.prototype.to = function() {
-	const obj = arguments[0];
-	
-	if ('rotation' in obj) {
-		const prevRotation = this._prevRotation || 0;
-		
-		if (Math.abs(obj.rotation - prevRotation) >= 360) {
-			if ('skewX' in obj) {
-				obj.skewX += 360;
+		hitPixi.on('pointerup', function() {
+			isDown = false;
+			if (isOver) {
+				createjs.gotoAndStop(overFrame);
+			} else {
+				createjs.gotoAndStop(baseFrame);
 			}
-			
-			if ('skewY' in obj) {
-				obj.skewY += 360;
-			}
-		}
+		});
 		
-		this._prevRotation = obj.rotation;
+		hitPixi.on('pointerupoutside', function() {
+			isDown = false;
+			if (isOver) {
+				createjs.gotoAndStop(overFrame);
+			} else {
+				createjs.gotoAndStop(baseFrame);
+			}
+		});
+		
+		hitPixi.interactive = true;
+		hitPixi.cursor = 'pointer';
+		
+		super(...arguments);
 	}
-	
-	return originTo.apply(this, arguments);
-};
-*/
+}
