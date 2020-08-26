@@ -22,6 +22,7 @@ git clone https://github.com/tawaship/Pixim-createjs-player
 <br>
 
 ```html
+<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
 <script src="/path/to/lib/pixi.5.3.2.min.js"></script>
 <script src="/path/to/dist/pixi-createjs-player.min.js"></script>
 ```
