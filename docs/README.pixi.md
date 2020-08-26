@@ -32,13 +32,10 @@ git clone https://github.com/tawaship/Pixim-createjs-player
 var player = new PIXI.createjs.Player(
 	"2FA8E0C7230941478CE2CA3DB82DBEDF", // "lib.properties.id" in Animate content.
 	"game", // Root class name of Animate content.
-	"game/", // Directory path of in Animate content.
+	"game/", // Directory path of Animate content.
 	{
 		antialias: true
-	}, // Options of PIXI.Application.
-	{
-		autoAdjust: true
-	} // Options of Pixim.Application
+	} // Options of PIXI.Application.
 );
 
 player

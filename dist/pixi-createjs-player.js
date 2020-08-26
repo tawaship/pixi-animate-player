@@ -1,87 +1,12 @@
 /*!
  * @tawaship/pixi-createjs-player.js - v1.0.0
  * 
- * @require pixi.js v5.3.3
+ * @require pixi.js v5.3.2
  * @author tawaship (makazu.mori@gmail.com)
  * @license MIT
  */
-this.PIXI = this.PIXI || {}, function(exports, PIXI$1) {
+this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
     "use strict";
-    function initAsync(id, basepath) {
-        var comp = window.AdobeAn.getComposition(id);
-        if (!comp) {
-            throw new Error("no composition");
-        }
-        var lib = comp.getLibrary();
-        return new Promise((function(resolve, reject) {
-            0 === lib.properties.manifest.length && resolve({});
-            var loader = new createjs.LoadQueue(!1);
-            if (loader.installPlugin(createjs.Sound), loader.addEventListener("fileload", (function(evt) {
-                !function(evt, comp) {
-                    var images = comp.getImages();
-                    evt && "image" == evt.item.type && (images[evt.item.id] = evt.result);
-                }(evt, comp);
-            })), loader.addEventListener("complete", (function(evt) {
-                resolve(evt);
-            })), basepath) {
-                basepath = (basepath + "/").replace(/([^\:])\/\//, "$1/");
-                for (var m = lib.properties.manifest, i = 0; i < m.length; i++) {
-                    m[i].src = basepath + m[i].src;
-                }
-            }
-            loader.loadManifest(lib.properties.manifest);
-        })).then((function(evt) {
-            for (var ss = comp.getSpriteSheet(), queue = evt.target, ssMetadata = lib.ssMetadata, i = 0; i < ssMetadata.length; i++) {
-                ss[ssMetadata[i].name] = new window.createjs.SpriteSheet({
-                    images: [ queue.getResult(ssMetadata[i].name) ],
-                    frames: ssMetadata[i].frames
-                });
-            }
-            return lib;
-        }));
-    }
-    function initStage(stage, options) {
-        if ((options = options || {}).useSynchedTimeline) {
-            function containerDrawFunction() {
-                for (var list = this.children.slice(), i = 0, l = list.length; i < l; i++) {
-                    var child = list[i];
-                    child.isVisible() && child.draw();
-                }
-                return !0;
-            }
-            Object.defineProperties(createjs.MovieClip.prototype, {
-                draw: {
-                    value: function() {
-                        return this._updateState(), this._containerDraw();
-                    }
-                },
-                _containerDraw: {
-                    value: containerDrawFunction
-                }
-            });
-            var imageDescriptors = {
-                draw: {
-                    value: function() {
-                        return !0;
-                    }
-                }
-            };
-            Object.defineProperties(createjs.Sprite.prototype, imageDescriptors), Object.defineProperties(createjs.Graphics.prototype, imageDescriptors), 
-            Object.defineProperties(createjs.Shape.prototype, imageDescriptors), Object.defineProperties(createjs.Text.prototype, imageDescriptors), 
-            Object.defineProperties(createjs.Bitmap.prototype, imageDescriptors), stage.update = function(props) {
-                this.tickOnUpdate && this.tick(props), this.dispatchEvent("drawstart"), this.autoClear && this.clear(), 
-                this._webGLContext ? (this._batchDraw(this, this._webGLContext), -1 == this._autoPurge || this._drawID % (this._autoPurge / 2 | 0) || this.purgeTextures(this._autoPurge)) : this.draw(), 
-                this.dispatchEvent("drawend");
-            }, stage.draw = containerDrawFunction, stage._updateFunction = stage.update;
-        } else {
-            stage._updateFunction = stage.tick;
-        }
-        stage._handleTick ? stage._tickFunction = function(e) {
-            stage._updateFunction(), stage._handleTick();
-        } : stage._tickFunction = function(e) {
-            stage._updateFunction();
-        };
-    }
     Object.defineProperties(window, {
         playSound: {
             value: function(id, loop) {
@@ -92,6 +17,13 @@ this.PIXI = this.PIXI || {}, function(exports, PIXI$1) {
             }
         }
     });
+    /*!
+     * @tawaship/pixi-createjs-core.js - v1.0.4
+     * 
+     * @require pixi.js v5.3.2
+     * @author tawaship (makazu.mori@gmail.com)
+     * @license MIT
+     */
     var createjsOrigin = {
         DisplayObject: createjs.DisplayObject,
         MovieClip: createjs.MovieClip,
@@ -326,12 +258,12 @@ this.PIXI = this.PIXI || {}, function(exports, PIXI$1) {
                         for (var list = [], i = 0; i < value.length; i++) {
                             var f = value[i];
                             if (!(f instanceof createjs.ColorMatrixFilter)) {
-                                var m = new PIXI$1.filters.ColorMatrixFilter;
+                                var m = new PIXI.filters.ColorMatrixFilter;
                                 m.matrix = [ f.redMultiplier, 0, 0, 0, f.redOffset / 255, 0, f.greenMultiplier, 0, 0, f.greenOffset / 255, 0, 0, f.blueMultiplier, 0, f.blueOffset / 255, 0, 0, 0, f.alphaMultiplier, f.alphaOffset / 255, 0, 0, 0, 0, 1 ], 
                                 list.push(m);
                             }
                         }
-                        for (var o = this._pixiData.instance, c = o.children, n = new PIXI$1.Container, nc = this._pixiData.subInstance = n.addChild(new PIXI$1.Container); c.length; ) {
+                        for (var o = this._pixiData.instance, c = o.children, n = new PIXI.Container, nc = this._pixiData.subInstance = n.addChild(new PIXI.Container); c.length; ) {
                             nc.addChild(c[0]);
                         }
                         o.addChild(n), o._filterContainer = nc, nc.updateTransform(), nc.calculateBounds();
@@ -397,11 +329,11 @@ this.PIXI = this.PIXI || {}, function(exports, PIXI$1) {
     }
     createjs.MovieClip = function(superclass) {
         function MovieClip() {
-            this._overrideCreatejs(PIXI$1.Container), superclass.apply(this, arguments);
+            this._overrideCreatejs(PIXI.Container), superclass.apply(this, arguments);
         }
         return superclass && (MovieClip.__proto__ = superclass), MovieClip.prototype = Object.create(superclass && superclass.prototype), 
         MovieClip.prototype.constructor = MovieClip, MovieClip.prototype.initialize = function() {
-            return this._overrideCreatejs(PIXI$1.Container), this._pixiData.subInstance = this._pixiData.instance, 
+            return this._overrideCreatejs(PIXI.Container), this._pixiData.subInstance = this._pixiData.instance, 
             superclass.prototype.initialize.apply(this, arguments);
         }, MovieClip.prototype.addChild = function(child) {
             return this._pixiData.subInstance.addChild(child._pixiData.instance), superclass.prototype.addChild.call(this, child);
@@ -416,19 +348,19 @@ this.PIXI = this.PIXI || {}, function(exports, PIXI$1) {
         }, MovieClip;
     }(makeClass(createjsOrigin.MovieClip)), createjs.Sprite = function(superclass) {
         function Sprite() {
-            this._overrideCreatejs(PIXI$1.Sprite), superclass.apply(this, arguments);
+            this._overrideCreatejs(PIXI.Sprite), superclass.apply(this, arguments);
         }
         return superclass && (Sprite.__proto__ = superclass), Sprite.prototype = Object.create(superclass && superclass.prototype), 
         Sprite.prototype.constructor = Sprite, Sprite.prototype.initialize = function() {
-            return this._overrideCreatejs(PIXI$1.Sprite), superclass.prototype.initialize.apply(this, arguments);
+            return this._overrideCreatejs(PIXI.Sprite), superclass.prototype.initialize.apply(this, arguments);
         }, Sprite.prototype.gotoAndStop = function() {
             superclass.prototype.gotoAndStop.apply(this, arguments);
-            var frame = this.spriteSheet.getFrame(this.currentFrame), baseTexture = PIXI$1.BaseTexture.from(frame.image), texture = new PIXI$1.Texture(baseTexture, frame.rect);
+            var frame = this.spriteSheet.getFrame(this.currentFrame), baseTexture = PIXI.BaseTexture.from(frame.image), texture = new PIXI.Texture(baseTexture, frame.rect);
             this._pixiData.instance.texture = texture;
         }, Sprite;
     }(makeClass(createjsOrigin.Sprite)), createjs.Shape = function(superclass) {
         function Sprite() {
-            this._overrideCreatejs(PIXI$1.Container), this._pixiData.masked = [], superclass.apply(this, arguments);
+            this._overrideCreatejs(PIXI.Container), this._pixiData.masked = [], superclass.apply(this, arguments);
         }
         superclass && (Sprite.__proto__ = superclass), Sprite.prototype = Object.create(superclass && superclass.prototype), 
         Sprite.prototype.constructor = Sprite;
@@ -455,7 +387,7 @@ this.PIXI = this.PIXI || {}, function(exports, PIXI$1) {
         }, Object.defineProperties(Sprite.prototype, prototypeAccessors), Sprite;
     }(makeClass(createjsOrigin.Shape)), createjs.Graphics = function(superclass) {
         function Sprite() {
-            this._overrideCreatejs(PIXI$1.Graphics), this._pixiData.instance.beginFill(16772846, 1), 
+            this._overrideCreatejs(PIXI.Graphics), this._pixiData.instance.beginFill(16772846, 1), 
             this._pixiData.strokeFill = 0, this._pixiData.strokeAlpha = 1, superclass.apply(this, arguments);
         }
         return superclass && (Sprite.__proto__ = superclass), Sprite.prototype = Object.create(superclass && superclass.prototype), 
@@ -521,14 +453,14 @@ this.PIXI = this.PIXI || {}, function(exports, PIXI$1) {
             superclass.prototype.drawPolyStar.call(this, x, y, radius, sides, pointSize, angle);
         }, Sprite;
     }(makeClass(createjsOrigin.Graphics));
-    var PIXI, LineCap = {
-        0: PIXI$1.LINE_JOIN.BUTT,
-        1: PIXI$1.LINE_JOIN.ROUND,
-        2: PIXI$1.LINE_JOIN.SQUARE
+    var LineCap = {
+        0: PIXI.LINE_JOIN.BUTT,
+        1: PIXI.LINE_JOIN.ROUND,
+        2: PIXI.LINE_JOIN.SQUARE
     }, LineJoin = {
-        0: PIXI$1.LINE_JOIN.MITER,
-        1: PIXI$1.LINE_JOIN.ROUND,
-        2: PIXI$1.LINE_JOIN.BEVEL
+        0: PIXI.LINE_JOIN.MITER,
+        1: PIXI.LINE_JOIN.ROUND,
+        2: PIXI.LINE_JOIN.BEVEL
     };
     Object.defineProperties(createjs.Graphics.prototype, {
         curveTo: {
@@ -593,7 +525,7 @@ this.PIXI = this.PIXI || {}, function(exports, PIXI$1) {
         }
     }), createjs.Text = function(superclass) {
         function Sprite(text, font, color) {
-            this._overrideCreatejs(PIXI$1.Container), this._originParams = Object.assign(this._originParams, {
+            this._overrideCreatejs(PIXI.Container), this._originParams = Object.assign(this._originParams, {
                 text: text,
                 font: font,
                 color: color,
@@ -602,7 +534,7 @@ this.PIXI = this.PIXI || {}, function(exports, PIXI$1) {
                 lineWidth: 0
             });
             var _font = this._parseFont(font);
-            this._pixiData.instance.text = this._pixiData.instance.addChild(new PIXI$1.Text(text, {
+            this._pixiData.instance.text = this._pixiData.instance.addChild(new PIXI.Text(text, {
                 fontSize: _font.fontSize,
                 fontFamily: _font.fontFamily,
                 fill: this._parseColor(color),
@@ -670,7 +602,7 @@ this.PIXI = this.PIXI || {}, function(exports, PIXI$1) {
         }, Object.defineProperties(Sprite.prototype, prototypeAccessors$1), Sprite;
     }(makeClass(createjsOrigin.Text)), createjs.ButtonHelper = function(superclass) {
         function Sprite() {
-            this._overrideCreatejs(PIXI$1.Container);
+            this._overrideCreatejs(PIXI.Container);
             var createjs = arguments[0], pixi = createjs._pixiData.instance, baseFrame = arguments[1], overFrame = arguments[2], downFrame = arguments[3], hit = arguments[5], hitFrame = arguments[6];
             hit.gotoAndStop(hitFrame);
             var hitPixi = pixi.addChild(hit._pixiData.instance);
@@ -690,7 +622,41 @@ this.PIXI = this.PIXI || {}, function(exports, PIXI$1) {
         }
         return superclass && (Sprite.__proto__ = superclass), Sprite.prototype = Object.create(superclass && superclass.prototype), 
         Sprite.prototype.constructor = Sprite, Sprite;
-    }(makeClass(createjsOrigin.ButtonHelper, !0)), function(PIXI) {
+    }(makeClass(createjsOrigin.ButtonHelper, !0));
+    var PIXI$1, prepareCreatejsAsync$1 = function(id, basepath) {
+        var comp = window.AdobeAn.getComposition(id);
+        if (!comp) {
+            throw new Error("no composition");
+        }
+        var lib = comp.getLibrary();
+        return new Promise((function(resolve, reject) {
+            0 === lib.properties.manifest.length && resolve({});
+            var loader = new window.createjs.LoadQueue(!1);
+            if (loader.installPlugin(window.createjs.Sound), loader.addEventListener("fileload", (function(evt) {
+                !function(evt, comp) {
+                    var images = comp.getImages();
+                    evt && "image" == evt.item.type && (images[evt.item.id] = evt.result);
+                }(evt, comp);
+            })), loader.addEventListener("complete", (function(evt) {
+                resolve(evt);
+            })), basepath) {
+                basepath = (basepath + "/").replace(/([^\:])\/\//, "$1/");
+                for (var m = lib.properties.manifest, i = 0; i < m.length; i++) {
+                    m[i].src = basepath + m[i].src;
+                }
+            }
+            loader.loadManifest(lib.properties.manifest);
+        })).then((function(evt) {
+            for (var ss = comp.getSpriteSheet(), queue = evt.target, ssMetadata = lib.ssMetadata, i = 0; i < ssMetadata.length; i++) {
+                ss[ssMetadata[i].name] = new window.createjs.SpriteSheet({
+                    images: [ queue.getResult(ssMetadata[i].name) ],
+                    frames: ssMetadata[i].frames
+                });
+            }
+            return lib;
+        }));
+    };
+    !function(PIXI) {
         !function(createjs) {
             var Player = function(id, rootName, basepath, pixiOptions) {
                 void 0 === pixiOptions && (pixiOptions = {});
@@ -703,7 +669,7 @@ this.PIXI = this.PIXI || {}, function(exports, PIXI$1) {
                     throw new Error("no root class");
                 }
                 var prop = lib.properties;
-                this._app = new PIXI$1.Application(Object.assign(pixiOptions, {
+                this._app = new _PIXI.Application(Object.assign(pixiOptions, {
                     width: prop.width,
                     height: prop.height,
                     backgroundColor: parseInt(prop.color.slice(1), 16)
@@ -715,11 +681,52 @@ this.PIXI = this.PIXI || {}, function(exports, PIXI$1) {
                     configurable: !0
                 }
             };
-            Player.prototype.initAsync = function(options) {
+            Player.prototype.prepareAsync = function(options) {
                 var this$1 = this;
-                return void 0 === options && (options = {}), initAsync(this._id, this._basepath).then((function(lib) {
+                return void 0 === options && (options = {}), prepareCreatejsAsync$1(this._id, this._basepath).then((function(lib) {
                     var exportRoot = new this$1._rootClass;
-                    this$1._stage = new lib.Stage, initStage(this$1._stage, options), Object.defineProperties(window, {
+                    this$1._stage = new lib.Stage, function(stage, options) {
+                        if (void 0 === options && (options = {}), options.useSynchedTimeline) {
+                            function containerDrawFunction() {
+                                for (var list = this.children.slice(), i = 0, l = list.length; i < l; i++) {
+                                    var child = list[i];
+                                    child.isVisible() && child.draw();
+                                }
+                                return !0;
+                            }
+                            Object.defineProperties(window.createjs.MovieClip.prototype, {
+                                draw: {
+                                    value: function() {
+                                        return this._updateState(), this._containerDraw();
+                                    }
+                                },
+                                _containerDraw: {
+                                    value: containerDrawFunction
+                                }
+                            });
+                            var imageDescriptors = {
+                                draw: {
+                                    value: function() {
+                                        return !0;
+                                    }
+                                }
+                            };
+                            Object.defineProperties(window.createjs.Sprite.prototype, imageDescriptors), Object.defineProperties(window.createjs.Graphics.prototype, imageDescriptors), 
+                            Object.defineProperties(window.createjs.Shape.prototype, imageDescriptors), Object.defineProperties(window.createjs.Text.prototype, imageDescriptors), 
+                            Object.defineProperties(window.createjs.Bitmap.prototype, imageDescriptors), stage.update = function(props) {
+                                this.tickOnUpdate && this.tick(props), this.dispatchEvent("drawstart"), this.autoClear && this.clear(), 
+                                this._webGLContext ? (this._batchDraw(this, this._webGLContext), -1 == this._autoPurge || this._drawID % (this._autoPurge / 2 | 0) || this.purgeTextures(this._autoPurge)) : this.draw(), 
+                                this.dispatchEvent("drawend");
+                            }, stage.draw = containerDrawFunction, stage._updateFunction = stage.update;
+                        } else {
+                            stage._updateFunction = stage.tick;
+                        }
+                        stage._handleTick ? stage._tickFunction = function(e) {
+                            stage._updateFunction(), stage._handleTick();
+                        } : stage._tickFunction = function(e) {
+                            stage._updateFunction();
+                        };
+                    }(this$1._stage, options), Object.defineProperties(window, {
                         exportRoot: {
                             value: exportRoot
                         },
@@ -739,8 +746,8 @@ this.PIXI = this.PIXI || {}, function(exports, PIXI$1) {
                 return this._app;
             }, Object.defineProperties(Player.prototype, prototypeAccessors), createjs.Player = Player;
         }(PIXI.createjs || (PIXI.createjs = {}));
-    }(PIXI || (PIXI = {}));
-    var Player = PIXI.createjs.Player;
+    }(PIXI$1 || (PIXI$1 = {}));
+    var Player = PIXI$1.createjs.Player;
     exports.Player = Player;
 }(this.PIXI.createjs = this.PIXI.createjs || {}, PIXI);
 //# sourceMappingURL=pixi-createjs-player.js.map

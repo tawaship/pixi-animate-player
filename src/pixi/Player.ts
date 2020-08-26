@@ -1,4 +1,4 @@
-import { initAsync as _initAsync, initStage } from '../common/core';
+import * as Core from '../common/core';
 import * as _PIXI from 'pixi.js';
 
 /**
@@ -8,9 +8,6 @@ declare const window: any;
 
 namespace PIXI {
 	export namespace createjs {
-		/**
-		 * @property useSynchedTimeline Whether the movie clip plays when placed as a "graphic".
-		 */
 		export type TCreatejsPlayerOption = {
 			useSynchedTimeline?: boolean
 		};
@@ -25,6 +22,12 @@ namespace PIXI {
 			private _basepath: string;
 			private _stage: any;
 			
+			/**
+			 * @param id "lib.properties.id" in Animate content.
+			 * @param rootName Root class name of Animate content.
+			 * @param basepath Directory path of Animate content.
+			 * @param pixiOptions Options of PIXI.Application.
+			 */
 			constructor(id: string, rootName: string, basepath: string, pixiOptions: Object = {}) {
 				const comp = window.AdobeAn.getComposition(id);
 				if (!comp) {
@@ -57,13 +60,16 @@ namespace PIXI {
 				this._handleTick = this._handleTick.bind(this);
 			}
 			
-			initAsync(options: TCreatejsPlayerOption = {}) {
-				return _initAsync(this._id, this._basepath)
-					.then(lib => {
+			/**
+			 * Prepare createjs content published with Adobe Animate.
+			 */
+			prepareAsync(options: TCreatejsPlayerOption = {}) {
+				return Core.prepareCreatejsAsync(this._id, this._basepath)
+					.then((lib: Core.TCreatejsLibrary) => {
 						const exportRoot = new this._rootClass();
 						
 						this._stage = new lib.Stage();
-						initStage(this._stage, options);
+						Core.initStage(this._stage, options);
 						
 						Object.defineProperties(window, {
 							exportRoot: {
