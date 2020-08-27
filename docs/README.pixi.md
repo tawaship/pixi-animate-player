@@ -1,6 +1,6 @@
 # pixi-animate-player
 
-"pixi-animate-player" is a plugin for playing content published by Adobe Animate with "[pixi.js](https://github.com/pixijs/pixi.js)".
+A module for playing content published by Adobe Animate with "[pixi.js](https://github.com/pixijs/pixi.js)".
 
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 

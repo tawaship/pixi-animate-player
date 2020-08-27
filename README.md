@@ -1,6 +1,6 @@
 # Pixim-animate-player
 
-"Pixim-animate-player" is a plugin for playing content published by Adobe Animate with "[Pixim.js](https://github.com/tawaship/Pixim.js)".
+A module for playing content published by Adobe Animate with "[Pixim.js](https://github.com/tawaship/Pixim.js)".
 
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
