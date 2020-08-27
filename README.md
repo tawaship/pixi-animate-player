@@ -1,6 +1,6 @@
-# Pixim-createjs-player
+# Pixim-animate-player
 
-"Pixim-createjs-player" is a plugin for playing content published by Adobe Animate with "[Pixim.js](https://github.com/tawaship/Pixim.js)".
+"Pixim-animate-player" is a plugin for playing content published by Adobe Animate with "[Pixim.js](https://github.com/tawaship/Pixim.js)".
 
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
@@ -17,7 +17,7 @@ I have not confirmed the operation on other versions.
 ## How to use
 
 ```sh
-git clone https://github.com/tawaship/Pixim-createjs-player
+git clone https://github.com/tawaship/Pixim-animate-player
 ```
 
 <br>
@@ -26,13 +26,13 @@ git clone https://github.com/tawaship/Pixim-createjs-player
 <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
 <script src="/path/to/lib/pixi.5.3.2.min.js"></script>
 <script src="/path/to/lib/Pixim.min.js"></script>
-<script src="/path/to/dist/Pixim-createjs-player.min.js"></script>
+<script src="/path/to/dist/Pixim-animate-player.min.js"></script>
 ```
 
 <br>
 
 ```javascript
-var player = new Pixim.createjs.Player(
+var player = new Pixim.animate.Player(
 	"2FA8E0C7230941478CE2CA3DB82DBEDF", // "lib.properties.id" in Animate content.
 	"game", // Root class name of Animate content.
 	"game/", // Directory path of Animate content.

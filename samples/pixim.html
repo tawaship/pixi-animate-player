@@ -6,7 +6,7 @@
 		<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
 		<script src="../lib/pixi.5.3.2.min.js"></script>
 		<script src="../lib/Pixim.min.js"></script>
-		<script src="../dist/Pixim-createjs-player.js"></script>
+		<script src="../dist/Pixim-animate-player.js"></script>
 		<link rel="stylesheet" href="../style.css" />
 	</head>
 	<body>
@@ -49,7 +49,7 @@
 					document.head.removeChild(script);
 					
 					var pRatio = window.devicePixelRatio || 1;
-					var player = new Pixim.createjs.Player(data.comp, 'game', path, {
+					var player = new Pixim.animate.Player(data.comp, 'game', path, {
 						antialias: true,
 						resolution: pRatio
 					}, {

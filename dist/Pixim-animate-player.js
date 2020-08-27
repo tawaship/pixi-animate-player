@@ -1,5 +1,5 @@
 /*!
- * @tawaship/pixim-createjs-player.js - v1.0.0
+ * @tawaship/pixim-animate-player.js - v1.0.0
  * 
  * @require pixi.js v5.3.2
  * @require @tawaship/pixim.js v1.6.1
@@ -19,7 +19,7 @@ this.Pixim = this.Pixim || {}, function(exports, _Pixim) {
         }
     });
     /*!
-     * @tawaship/pixi-createjs-core.js - v1.0.4
+     * @tawaship/pixi-animate-core.js - v1.0.1
      * 
      * @require pixi.js v5.3.2
      * @author tawaship (makazu.mori@gmail.com)
@@ -624,7 +624,7 @@ this.Pixim = this.Pixim || {}, function(exports, _Pixim) {
         return superclass && (Sprite.__proto__ = superclass), Sprite.prototype = Object.create(superclass && superclass.prototype), 
         Sprite.prototype.constructor = Sprite, Sprite;
     }(makeClass(createjsOrigin.ButtonHelper, !0));
-    var Pixim, prepareCreatejsAsync$1 = function(id, basepath) {
+    var Pixim, prepareAnimateAsync$1 = function(id, basepath) {
         var comp = window.AdobeAn.getComposition(id);
         if (!comp) {
             throw new Error("no composition");
@@ -658,7 +658,7 @@ this.Pixim = this.Pixim || {}, function(exports, _Pixim) {
         }));
     };
     !function(Pixim) {
-        !function(createjs) {
+        !function(animate) {
             var Player = function(superclass) {
                 function Player(id, rootName, basepath, pixiOptions, piximOptions) {
                     void 0 === pixiOptions && (pixiOptions = {}), void 0 === piximOptions && (piximOptions = {});
@@ -681,7 +681,7 @@ this.Pixim = this.Pixim || {}, function(exports, _Pixim) {
                 return superclass && (Player.__proto__ = superclass), Player.prototype = Object.create(superclass && superclass.prototype), 
                 Player.prototype.constructor = Player, Player.prototype.prepareAsync = function(options) {
                     var this$1 = this;
-                    return void 0 === options && (options = {}), prepareCreatejsAsync$1(this._id, this._basepath).then((function(lib) {
+                    return void 0 === options && (options = {}), prepareAnimateAsync$1(this._id, this._basepath).then((function(lib) {
                         var exportRoot = new this$1._rootClass;
                         this$1._stage = new lib.Stage, function(stage, options) {
                             if (void 0 === options && (options = {}), options.useSynchedTimeline) {
@@ -755,10 +755,10 @@ this.Pixim = this.Pixim || {}, function(exports, _Pixim) {
                     this._stage._tickFunction(), this.app.render();
                 }, Player;
             }(_Pixim.Application);
-            createjs.Player = Player;
-        }(Pixim.createjs || (Pixim.createjs = {}));
+            animate.Player = Player;
+        }(Pixim.animate || (Pixim.animate = {}));
     }(Pixim || (Pixim = {}));
-    var Player = Pixim.createjs.Player;
+    var Player = Pixim.animate.Player;
     exports.Player = Player;
-}(this.Pixim.createjs = this.Pixim.createjs || {}, Pixim);
-//# sourceMappingURL=Pixim-createjs-player.js.map
+}(this.Pixim.animate = this.Pixim.animate || {}, Pixim);
+//# sourceMappingURL=Pixim-animate-player.js.map

@@ -7,8 +7,8 @@ import * as _Pixim from '@tawaship/pixim.js';
 declare const window: any;
 
 namespace Pixim {
-	export namespace createjs {
-		export type TCreatejsPlayerOption = {
+	export namespace animate {
+		export type TPlayerOption = {
 			useSynchedTimeline?: boolean
 		};
 		
@@ -34,7 +34,7 @@ namespace Pixim {
 					throw new Error('no composition');
 				}
 				
-				const lib = comp.getLibrary();
+				const lib: Core.TAnimateLibrary = comp.getLibrary();
 				const root = lib[rootName];
 				if (!root) {
 					throw new Error('no root class');
@@ -60,9 +60,9 @@ namespace Pixim {
 			/**
 			 * Prepare createjs content published with Adobe Animate.
 			 */
-			prepareAsync(options: TCreatejsPlayerOption = {}) {
-				return Core.prepareCreatejsAsync(this._id, this._basepath)
-					.then((lib: Core.TCreatejsLibrary) => {
+			prepareAsync(options: TPlayerOption = {}) {
+				return Core.prepareAnimateAsync(this._id, this._basepath)
+					.then((lib: Core.TAnimateLibrary) => {
 						const exportRoot = new this._rootClass();
 						
 						this._stage = new lib.Stage();
@@ -128,9 +128,9 @@ namespace Pixim {
 /**
  * @ignore
  */
-export import TCreatejsPlayerOption = Pixim.createjs.TCreatejsPlayerOption;
+export import TPlayerOption = Pixim.animate.TPlayerOption;
 
 /**
  * @ignore
  */
-export import Player = Pixim.createjs.Player;
+export import Player = Pixim.animate.Player;

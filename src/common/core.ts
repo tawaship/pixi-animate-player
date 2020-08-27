@@ -1,15 +1,15 @@
 import * as PIXI from 'pixi.js';
-import * as Core from '@tawaship/pixi-createjs-core';
+import * as Core from '@tawaship/pixi-animate-core';
 
 /**
  * @ignore
  */
-export import prepareCreatejsAsync = Core.prepareCreatejsAsync;
+export import prepareAnimateAsync = Core.prepareAnimateAsync;
 
 /**
  * @ignore
  */
-export import TCreatejsLibrary = Core.TCreatejsLibrary;
+export import TAnimateLibrary = Core.TAnimateLibrary;
 
 /**
  * @ignore

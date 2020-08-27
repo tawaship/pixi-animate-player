@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no, minimal-ui">
 		<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
 		<script src="../lib/pixi.5.3.2.min.js"></script>
-		<script src="../dist/pixi-createjs-player.js"></script>
+		<script src="../dist/pixi-animate-player.js"></script>
 		<link rel="stylesheet" href="../style.css" />
 	</head>
 	<body>
@@ -48,7 +48,7 @@
 					document.head.removeChild(script);
 					
 					var pRatio = window.devicePixelRatio || 1;
-					var player = new PIXI.createjs.Player(data.comp, 'game', path, {
+					var player = new PIXI.animate.Player(data.comp, 'game', path, {
 						antialias: true,
 						resolution: pRatio
 					});

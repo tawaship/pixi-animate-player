@@ -1,6 +1,6 @@
-# pixi-createjs-player
+# pixi-animate-player
 
-"pixi-createjs-player" is a plugin for playing content published by Adobe Animate with "[pixi.js](https://github.com/pixijs/pixi.js)".
+"pixi-animate-player" is a plugin for playing content published by Adobe Animate with "[pixi.js](https://github.com/pixijs/pixi.js)".
 
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
@@ -16,7 +16,7 @@ I have not confirmed the operation on other versions.
 ## How to use
 
 ```sh
-git clone https://github.com/tawaship/Pixim-createjs-player
+git clone https://github.com/tawaship/Pixim-animate-player
 ```
 
 <br>
@@ -24,13 +24,13 @@ git clone https://github.com/tawaship/Pixim-createjs-player
 ```html
 <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
 <script src="/path/to/lib/pixi.5.3.2.min.js"></script>
-<script src="/path/to/dist/pixi-createjs-player.min.js"></script>
+<script src="/path/to/dist/pixi-animate-player.min.js"></script>
 ```
 
 <br>
 
 ```javascript
-var player = new PIXI.createjs.Player(
+var player = new PIXI.animate.Player(
 	"2FA8E0C7230941478CE2CA3DB82DBEDF", // "lib.properties.id" in Animate content.
 	"game", // Root class name of Animate content.
 	"game/", // Directory path of Animate content.

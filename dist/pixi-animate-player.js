@@ -1,5 +1,5 @@
 /*!
- * @tawaship/pixi-createjs-player.js - v1.0.0
+ * @tawaship/pixi-animate-player.js - v1.0.0
  * 
  * @require pixi.js v5.3.2
  * @author tawaship (makazu.mori@gmail.com)
@@ -18,7 +18,7 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
         }
     });
     /*!
-     * @tawaship/pixi-createjs-core.js - v1.0.4
+     * @tawaship/pixi-animate-core.js - v1.0.1
      * 
      * @require pixi.js v5.3.2
      * @author tawaship (makazu.mori@gmail.com)
@@ -623,7 +623,7 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
         return superclass && (Sprite.__proto__ = superclass), Sprite.prototype = Object.create(superclass && superclass.prototype), 
         Sprite.prototype.constructor = Sprite, Sprite;
     }(makeClass(createjsOrigin.ButtonHelper, !0));
-    var PIXI$1, prepareCreatejsAsync$1 = function(id, basepath) {
+    var PIXI$1, prepareAnimateAsync$1 = function(id, basepath) {
         var comp = window.AdobeAn.getComposition(id);
         if (!comp) {
             throw new Error("no composition");
@@ -657,7 +657,7 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
         }));
     };
     !function(PIXI) {
-        !function(createjs) {
+        !function(animate) {
             var Player = function(id, rootName, basepath, pixiOptions) {
                 void 0 === pixiOptions && (pixiOptions = {});
                 var comp = window.AdobeAn.getComposition(id);
@@ -683,7 +683,7 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
             };
             Player.prototype.prepareAsync = function(options) {
                 var this$1 = this;
-                return void 0 === options && (options = {}), prepareCreatejsAsync$1(this._id, this._basepath).then((function(lib) {
+                return void 0 === options && (options = {}), prepareAnimateAsync$1(this._id, this._basepath).then((function(lib) {
                     var exportRoot = new this$1._rootClass;
                     this$1._stage = new lib.Stage, function(stage, options) {
                         if (void 0 === options && (options = {}), options.useSynchedTimeline) {
@@ -744,10 +744,10 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
                 this._stage._tickFunction(), this.app.render();
             }, prototypeAccessors.app.get = function() {
                 return this._app;
-            }, Object.defineProperties(Player.prototype, prototypeAccessors), createjs.Player = Player;
-        }(PIXI.createjs || (PIXI.createjs = {}));
+            }, Object.defineProperties(Player.prototype, prototypeAccessors), animate.Player = Player;
+        }(PIXI.animate || (PIXI.animate = {}));
     }(PIXI$1 || (PIXI$1 = {}));
-    var Player = PIXI$1.createjs.Player;
+    var Player = PIXI$1.animate.Player;
     exports.Player = Player;
-}(this.PIXI.createjs = this.PIXI.createjs || {}, PIXI);
-//# sourceMappingURL=pixi-createjs-player.js.map
+}(this.PIXI.animate = this.PIXI.animate || {}, PIXI);
+//# sourceMappingURL=pixi-animate-player.js.map

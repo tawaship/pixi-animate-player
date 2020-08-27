@@ -12,7 +12,7 @@ const pixim = conf.dependencies['@tawaship/pixim.js'].replace('^', '');
 
 const pixi_banner = [
 	'/*!',
-	` * @tawaship/pixi-createjs-player.js - v${version}`,
+	` * @tawaship/pixi-animate-player.js - v${version}`,
 	' * ',
 	` * @require pixi.js v${pixi}`,
 	' * @author tawaship (makazu.mori@gmail.com)',
@@ -23,7 +23,7 @@ const pixi_banner = [
 
 const pixim_banner = [
 	'/*!',
-	` * @tawaship/pixim-createjs-player.js - v${version}`,
+	` * @tawaship/pixim-animate-player.js - v${version}`,
 	' * ',
 	` * @require pixi.js v${pixi}`,
 	` * @require @tawaship/pixim.js v${pixim}`,
@@ -44,9 +44,9 @@ export default (async () => {
 			output: [
 				{
 					banner: pixim_banner,
-					file: 'dist/Pixim-createjs-player.js',
+					file: 'dist/Pixim-animate-player.js',
 					format: 'iife',
-					name: 'Pixim.createjs',
+					name: 'Pixim.animate',
 					sourcemap: true,
 					extend: true,
 					globals: {
@@ -79,9 +79,9 @@ export default (async () => {
 			output: [
 				{
 					banner: pixim_banner,
-					file: 'dist/Pixim-createjs-player.min.js',
+					file: 'dist/Pixim-animate-player.min.js',
 					format: 'iife',
-					name: 'Pixim.createjs',
+					name: 'Pixim.animate',
 					sourcemap: true,
 					extend: true,
 					globals: {
@@ -110,9 +110,9 @@ export default (async () => {
 			output: [
 				{
 					banner: pixi_banner,
-					file: 'dist/pixi-createjs-player.js',
+					file: 'dist/pixi-animate-player.js',
 					format: 'iife',
-					name: 'PIXI.createjs',
+					name: 'PIXI.animate',
 					sourcemap: true,
 					extend: true,
 					globals: {
@@ -144,9 +144,9 @@ export default (async () => {
 			output: [
 				{
 					banner: pixi_banner,
-					file: 'dist/pixi-createjs-player.min.js',
+					file: 'dist/pixi-animate-player.min.js',
 					format: 'iife',
-					name: 'PIXI.createjs',
+					name: 'PIXI.animate',
 					sourcemap: true,
 					extend: true,
 					globals: {
