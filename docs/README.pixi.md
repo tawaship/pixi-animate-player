@@ -50,4 +50,4 @@ player
 
 ## Samples
 
-[github](../..//samples/)
+[github](../../samples/)
