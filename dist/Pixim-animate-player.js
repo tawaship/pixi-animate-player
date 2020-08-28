@@ -9,7 +9,7 @@
 this.Pixim = this.Pixim || {}, function(exports, pixi_js, _Pixim) {
     "use strict";
     /*!
-	 * @tawaship/pixi-animate-core.js - v1.0.5
+	 * @tawaship/pixi-animate-core.js - v1.0.6
 	 * 
 	 * @require pixi.js v5.3.2
 	 * @author tawaship (makazu.mori@gmail.com)
