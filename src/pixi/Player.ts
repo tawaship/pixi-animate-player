@@ -1,4 +1,5 @@
-import * as Core from '../common/core';
+import { prepareAnimateAsync, TAnimateLibrary, TPlayerOption } from '@tawaship/pixi-animate-core';
+import { initStage } from '../common/core';
 import * as _PIXI from 'pixi.js';
 
 /**
@@ -34,7 +35,7 @@ namespace PIXI {
 					throw new Error('no composition');
 				}
 				
-				const lib: Core.TAnimateLibrary = comp.getLibrary();
+				const lib: TAnimateLibrary = comp.getLibrary();
 				const root = lib[rootName];
 				if (!root) {
 					throw new Error('no root class');
@@ -50,6 +51,7 @@ namespace PIXI {
 				
 				document.body.appendChild(this._app.view);
 				this._app.stop();
+				this._app.render();
 				
 				this._id = id;
 				this._rootClass = root;
@@ -62,14 +64,15 @@ namespace PIXI {
 			
 			/**
 			 * Prepare createjs content published with Adobe Animate.
+			 * @async
 			 */
 			prepareAsync(options: TPlayerOption = {}) {
-				return Core.prepareAnimateAsync(this._id, this._basepath)
-					.then((lib: Core.TAnimateLibrary) => {
+				return prepareAnimateAsync(this._id, this._basepath, options)
+					.then((lib: TAnimateLibrary) => {
 						const exportRoot = new this._rootClass();
 						
 						this._stage = new lib.Stage();
-						Core.initStage(this._stage, options);
+						initStage(this._stage, options);
 						
 						Object.defineProperties(window, {
 							exportRoot: {
@@ -83,11 +86,11 @@ namespace PIXI {
 						
 						window.AdobeAn.compositionLoaded(lib.properties.id);
 						
-						this._app.render();
-						
 						this._stage.addChild(exportRoot);
 						
-						this._app.stage.addChild(exportRoot.getPixi());
+						this._app.stage.addChild(exportRoot.pixi);
+						
+						return lib;
 					});
 			}
 			
@@ -103,8 +106,8 @@ namespace PIXI {
 				return this;
 			}
 			
-			private _handleTick() {
-				this._stage._tickFunction();
+			private _handleTick(e) {
+				this._stage.updateForPixi(e);
 				this.app.render();
 			}
 			
@@ -114,11 +117,6 @@ namespace PIXI {
 		}
 	}
 }
-
-/**
- * @ignore
- */
-export import TPlayerOption = PIXI.animate.TPlayerOption;
 
 /**
  * @ignore

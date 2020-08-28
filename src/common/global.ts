@@ -1,7 +1,11 @@
+import { initializeAnimate } from '@tawaship/pixi-animate-core';
+
 /**
  * @ignore
  */
 declare const window: any;
+
+initializeAnimate();
 
 function playSound(id: string, loop: boolean = false) {
 	return window.createjs.Sound.play(id, {

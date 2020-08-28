@@ -57,7 +57,9 @@
 						.prepareAsync({
 							useSynchedTimeline: true
 						})
-						.then(function() {
+						.then(function(lib) {
+							player.app.view.style.width = lib.properties.width + 'px';
+							player.app.view.style.height = lib.properties.height + 'px';
 							player.play();
 						});
 				});

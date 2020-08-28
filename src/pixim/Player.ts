@@ -1,4 +1,5 @@
-import * as Core from '../common/core';
+import { prepareAnimateAsync, TAnimateLibrary, TPlayerOption } from '@tawaship/pixi-animate-core';
+import { initStage } from '../common/core';
 import * as _Pixim from '@tawaship/pixim.js';
 
 /**
@@ -8,10 +9,6 @@ declare const window: any;
 
 namespace Pixim {
 	export namespace animate {
-		export type TPlayerOption = {
-			useSynchedTimeline?: boolean
-		};
-		
 		/**
 		 * @see https://tawaship.github.io/Pixim.js/classes/pixim.application.html
 		 */
@@ -34,7 +31,7 @@ namespace Pixim {
 					throw new Error('no composition');
 				}
 				
-				const lib: Core.TAnimateLibrary = comp.getLibrary();
+				const lib: TAnimateLibrary = comp.getLibrary();
 				const root = lib[rootName];
 				if (!root) {
 					throw new Error('no root class');
@@ -48,6 +45,8 @@ namespace Pixim {
 					backgroundColor: parseInt(prop.color.slice(1), 16)
 				}), piximOptions);
 				
+				this.app.render();
+				
 				this._id = id;
 				this._rootClass = root;
 				this._basepath = basepath;
@@ -59,14 +58,15 @@ namespace Pixim {
 			
 			/**
 			 * Prepare createjs content published with Adobe Animate.
+			 * @async
 			 */
 			prepareAsync(options: TPlayerOption = {}) {
-				return Core.prepareAnimateAsync(this._id, this._basepath)
-					.then((lib: Core.TAnimateLibrary) => {
+				return prepareAnimateAsync(this._id, this._basepath, options)
+					.then((lib: TAnimateLibrary) => {
 						const exportRoot = new this._rootClass();
 						
 						this._stage = new lib.Stage();
-						Core.initStage(this._stage, options);
+						initStage(this._stage, options);
 						
 						Object.defineProperties(window, {
 							exportRoot: {
@@ -94,14 +94,15 @@ namespace Pixim {
 						
 						const content = new Content();
 						content.addVars({
-							root: exportRoot.getPixi()
+							root: exportRoot.pixi
 						});
-						
-						this.app.render();
 						
 						this._stage.addChild(exportRoot);
 						
-						return this.attachAsync(content);
+						return this.attachAsync(content)
+							.then(() => {
+								return lib;
+							});
 					});
 			}
 			
@@ -117,18 +118,13 @@ namespace Pixim {
 				return this;
 			}
 			
-			private _handleTick() {
-				this._stage._tickFunction();
+			private _handleTick(e) {
+				this._stage.updateForPixi(e);
 				this.app.render();
 			}
 		}
 	}
 }
-
-/**
- * @ignore
- */
-export import TPlayerOption = Pixim.animate.TPlayerOption;
 
 /**
  * @ignore
