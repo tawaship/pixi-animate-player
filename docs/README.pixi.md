@@ -25,15 +25,16 @@ git clone https://github.com/tawaship/Pixim-animate-player
 <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
 <script src="/path/to/lib/pixi.5.3.2.min.js"></script>
 <script src="/path/to/dist/pixi-animate-player.min.js"></script>
+<script src="[your content]"></script>
 ```
 
 <br>
 
 ```javascript
 var player = new PIXI.animate.Player(
-	"2FA8E0C7230941478CE2CA3DB82DBEDF", // "lib.properties.id" in Animate content.
-	"game", // Root class name of Animate content.
-	"game/", // Directory path of Animate content.
+	"[conposition id]", // "lib.properties.id" in Animate content.
+	"[root class name]", // Root class name of Animate content.
+	"[content directory path]", // Directory path of Animate content.
 	{
 		antialias: true
 	} // Options of PIXI.Application.

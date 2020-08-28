@@ -87,12 +87,13 @@
 				<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://code.createjs.com/1.0.0/createjs.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/path/to/lib/pixi.5.3.2.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/path/to/lib/Pixim.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/path/to/dist/Pixim-animate-player.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/path/to/dist/Pixim-animate-player.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;[your content]&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 				<br>
 				<pre><code class="language-javascript"><span class="hljs-keyword">var</span> player = <span class="hljs-keyword">new</span> Pixim.animate.Player(
-    <span class="hljs-string">&quot;2FA8E0C7230941478CE2CA3DB82DBEDF&quot;</span>, <span class="hljs-comment">// &quot;lib.properties.id&quot; in Animate content.</span>
-    <span class="hljs-string">&quot;game&quot;</span>, <span class="hljs-comment">// Root class name of Animate content.</span>
-    <span class="hljs-string">&quot;game/&quot;</span>, <span class="hljs-comment">// Directory path of Animate content.</span>
+    <span class="hljs-string">&quot;[conposition id]&quot;</span>, <span class="hljs-comment">// &quot;lib.properties.id&quot; in Animate content.</span>
+    <span class="hljs-string">&quot;[root class name]&quot;</span>, <span class="hljs-comment">// Root class name of Animate content.</span>
+    <span class="hljs-string">&quot;[content directory path]&quot;</span>, <span class="hljs-comment">// Directory path of Animate content.</span>
     {
         <span class="hljs-attr">antialias</span>: <span class="hljs-literal">true</span>
     }, <span class="hljs-comment">// Options of PIXI.Application.</span>
