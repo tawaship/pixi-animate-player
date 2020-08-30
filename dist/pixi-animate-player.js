@@ -8,7 +8,7 @@
 this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
     "use strict";
     /*!
-	 * @tawaship/pixi-animate-core.js - v1.0.6
+	 * @tawaship/pixi-animate-core.js - v1.0.7
 	 * 
 	 * @require pixi.js v5.3.2
 	 * @author tawaship (makazu.mori@gmail.com)
@@ -588,7 +588,7 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
             superclass.prototype.moveTo.call(this, x, y);
         }, CreatejsGraphics.prototype.lineTo = function(x, y) {
             return this._pixiData.instance.lineTo(x, y), superclass.prototype.lineTo.call(this, x, y);
-        }, CreatejsGraphics.prototype.arcTon = function(x1, y1, x2, y2, radius) {
+        }, CreatejsGraphics.prototype.arcTo = function(x1, y1, x2, y2, radius) {
             return this._pixiData.instance.arcTo(x1, y1, x2, y2, radius), superclass.prototype.arcTo.call(this, x1, y1, x2, y2, radius);
         }, CreatejsGraphics.prototype.arc = function(x, y, radius, startAngle, endAngle, anticlockwise) {
             return this._pixiData.instance.arc(x, y, radius, startAngle, endAngle, anticlockwise), 
