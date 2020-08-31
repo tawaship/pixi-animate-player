@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no, minimal-ui">
+		<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+		<script src="../lib/pixi-legacy.5.3.2.min.js"></script>
+		<script src="../dist/pixi-animate-player.js"></script>
+		<link rel="stylesheet" href="../style.css" />
+	</head>
+	<body>
+		<script>
+			(function() {
+				function getQuery() {
+					var data = {};
+					
+					var q = window.location.search.slice(1);
+					
+					if (q) {
+						var l = q.split('&');
+						
+						for (var i = 0; i < l.length; i++) {
+							var a = l[i].split('=');
+							data[a[0]] = decodeURIComponent(a[1]);
+						}
+					}
+					
+					return data;
+				}
+				
+				var data = getQuery();
+				if (!data.type || !data.comp) {
+					return;
+				}
+				
+				var path = data.type + '/game/';
+				
+				var xhr = new XMLHttpRequest();
+				
+				xhr.addEventListener('load', function() {
+					if (xhr.readyState !== 4) {
+						return;
+					}
+					
+					var script = document.createElement('script');
+					script.text = xhr.responseText;
+					document.head.appendChild(script);
+					document.head.removeChild(script);
+					
+					var pRatio = window.devicePixelRatio || 1;
+					var player = new PIXI.animate.Player(data.comp, 'game', path, {
+						antialias: true,
+						resolution: pRatio,
+						forceCanvas: true
+					});
+					
+					player
+						.prepareAsync({
+							useSynchedTimeline: true
+						})
+						.then(function(lib) {
+							player.app.view.style.width = lib.properties.width + 'px';
+							player.app.view.style.height = lib.properties.height + 'px';
+							player.play();
+						});
+				});
+				
+				xhr.open('GET', path + 'game.js?v=' + Date.now());
+				xhr.send(null);
+			})();
+		</script>
+	</div>
+	</body>
+</html>
