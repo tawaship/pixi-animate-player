@@ -34,7 +34,7 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 	}
 
 
-(lib.シンボル12 = function(mode,startPosition,loop) {
+(lib.symbol12 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// レイヤー_1
@@ -50,10 +50,10 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 
 	this._renderFirstFrame();
 
-}).prototype = getMCSymbolPrototype(lib.シンボル12, new cjs.Rectangle(0,0,146.2,104.8), null);
+}).prototype = getMCSymbolPrototype(lib.symbol12, new cjs.Rectangle(0,0,146.2,104.8), null);
 
 
-(lib.シンボル11 = function(mode,startPosition,loop) {
+(lib.symbol11 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// レイヤー_1
@@ -241,10 +241,10 @@ p.nominalBounds = new cjs.Rectangle(0,0,51,45);
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_33},{t:this.shape_32},{t:this.shape_31},{t:this.shape_30},{t:this.shape_29},{t:this.shape_28},{t:this.shape_27},{t:this.shape_26},{t:this.shape_25},{t:this.shape_24},{t:this.shape_23},{t:this.shape_22},{t:this.shape_21},{t:this.shape_20},{t:this.shape_19},{t:this.shape_18},{t:this.shape_17},{t:this.shape_16},{t:this.shape_15},{t:this.shape_14}]}).wait(2));
 
 	// レイヤー_6
-	this.instance = new lib.シンボル12();
+	this.instance = new lib.symbol12();
 	this.instance.setTransform(225.2,146.7,1,1,0,0,0,73.1,52.4);
 
-	this.instance_1 = new lib.シンボル11();
+	this.instance_1 = new lib.symbol11();
 	this.instance_1.setTransform(217.5,65.55,1,1,0,0,0,25.5,22.5);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_1},{t:this.instance}]}).wait(2));
@@ -281,7 +281,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,51,45);
 	this._renderFirstFrame();
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(292.5,204,245.5,157.8);
+p.nominalBounds = new cjs.Rectangle(292.8,204,245.2,157.8);
 // library properties:
 lib.properties = {
 	id: '2FA8E0C7230941478CE2CA3DB82DBEDF',
@@ -291,7 +291,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/game_atlas_.png?1598408345612", id:"game_atlas_"}
+		{src:"images/game_atlas_.png?1598936756618", id:"game_atlas_"}
 	],
 	preloads: []
 };

@@ -9,19 +9,25 @@ lib.ssMetadata = [];
 
 
 
+(lib.bitmap1 = function() {
+	this.initialize(img.bitmap1);
+}).prototype = p = new cjs.Bitmap();
+p.nominalBounds = new cjs.Rectangle(0,0,32,32);
+
+
 (lib.gra = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// レイヤー_1
-	this.shape = new cjs.Shape();
-	this.shape.graphics.f("#00FF00").s().p("AidCeIAAk7IE7AAIAAE7g");
+	this.instance = new lib.bitmap1();
+	this.instance.setTransform(-16,-16);
 
-	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
 
 	this._renderFirstFrame();
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-15.7,-15.7,31.5,31.5);
+p.nominalBounds = new cjs.Rectangle(-16,-16,32,32);
 
 
 (lib.anim = function(mode,startPosition,loop) {
@@ -35,7 +41,7 @@ p.nominalBounds = new cjs.Rectangle(-15.7,-15.7,31.5,31.5);
 	this._renderFirstFrame();
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-15.7,-17.9,516.5,78.8);
+p.nominalBounds = new cjs.Rectangle(-16,-18.2,517,79.4);
 
 
 // stage content:
@@ -358,7 +364,7 @@ p.nominalBounds = new cjs.Rectangle(-15.7,-17.9,516.5,78.8);
 	this.instance.setTransform(31.75,330.8);
 
 	this.shape_77 = new cjs.Shape();
-	this.shape_77.graphics.f().s("#000000").ss(1,1,1,3,true).p("EgnNgQAMBObAAAEgnNAQBMBObAAAEgnNAAPMBObAAA");
+	this.shape_77.graphics.f().s("#000000").ss(1,1,1,3,true).p("EgnNAAPMBObAAAEgnNAQBMBObAAAEgnNgQAMBObAAA");
 	this.shape_77.setTransform(279,200.55);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_77},{t:this.instance}]}).wait(87));
@@ -384,7 +390,7 @@ p.nominalBounds = new cjs.Rectangle(-15.7,-17.9,516.5,78.8);
 	this._renderFirstFrame();
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(291,206.9,262,154.1);
+p.nominalBounds = new cjs.Rectangle(290.8,206.9,262.2,154.1);
 // library properties:
 lib.properties = {
 	id: '2FA8E0C7230941478CE2CA3DB82DBEDF',
@@ -393,7 +399,9 @@ lib.properties = {
 	fps: 60,
 	color: "#FFFFFF",
 	opacity: 1.00,
-	manifest: [],
+	manifest: [
+		{src:"images/bitmap1.png?1598936650286", id:"bitmap1"}
+	],
 	preloads: []
 };
 

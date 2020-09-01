@@ -11,7 +11,7 @@ lib.ssMetadata = [
 
 
 
-(lib.CachedBmp_35 = function() {
+(lib.CachedBmp_13 = function() {
 	this.initialize(ss["game_atlas_"]);
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
@@ -34,18 +34,18 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 	}
 
 
-(lib.シンボル3 = function(mode,startPosition,loop) {
+(lib.symbol3 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// レイヤー_1
-	this.instance = new lib.CachedBmp_35();
+	this.instance = new lib.CachedBmp_13();
 	this.instance.setTransform(0,0,0.5,0.5);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
 
 	this._renderFirstFrame();
 
-}).prototype = getMCSymbolPrototype(lib.シンボル3, new cjs.Rectangle(0,0,31.5,31.5), null);
+}).prototype = getMCSymbolPrototype(lib.symbol3, new cjs.Rectangle(0,0,31.5,31.5), null);
 
 
 (lib.container = function(mode,startPosition,loop) {
@@ -61,7 +61,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,0,0);
 	this.initialize(mode,startPosition,loop,{});
 
 	// レイヤー_1
-	this.instance = new lib.シンボル3();
+	this.instance = new lib.symbol3();
 	this.instance.setTransform(0.1,0.05,1,1,0,0,0,15.8,15.8);
 	this.instance.filters = [new cjs.ColorFilter(0, 0, 0, 1, 255, 119, 255, 0)];
 	this.instance.cache(-2,-2,36,36);
@@ -156,7 +156,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/game_atlas_.png?1596619418023", id:"game_atlas_"}
+		{src:"images/game_atlas_.png?1598936965173", id:"game_atlas_"}
 	],
 	preloads: []
 };

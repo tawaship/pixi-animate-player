@@ -11,63 +11,63 @@ lib.ssMetadata = [
 
 
 
-(lib.CachedBmp_132 = function() {
+(lib.CachedBmp_10 = function() {
 	this.initialize(ss["game_atlas_"]);
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_150 = function() {
+(lib.CachedBmp_9 = function() {
 	this.initialize(ss["game_atlas_"]);
 	this.gotoAndStop(1);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_142 = function() {
+(lib.CachedBmp_8 = function() {
 	this.initialize(ss["game_atlas_"]);
 	this.gotoAndStop(2);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_140 = function() {
+(lib.CachedBmp_7 = function() {
 	this.initialize(ss["game_atlas_"]);
 	this.gotoAndStop(3);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_139 = function() {
+(lib.CachedBmp_6 = function() {
 	this.initialize(ss["game_atlas_"]);
 	this.gotoAndStop(4);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_138 = function() {
+(lib.CachedBmp_5 = function() {
 	this.initialize(ss["game_atlas_"]);
 	this.gotoAndStop(5);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_133 = function() {
+(lib.CachedBmp_4 = function() {
 	this.initialize(ss["game_atlas_"]);
 	this.gotoAndStop(6);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_129 = function() {
+(lib.CachedBmp_3 = function() {
 	this.initialize(ss["game_atlas_"]);
 	this.gotoAndStop(7);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_128 = function() {
+(lib.CachedBmp_2 = function() {
 	this.initialize(ss["game_atlas_"]);
 	this.gotoAndStop(8);
 }).prototype = p = new cjs.Sprite();
@@ -94,7 +94,7 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// レイヤー_7
-	this.instance = new lib.CachedBmp_150();
+	this.instance = new lib.CachedBmp_9();
 	this.instance.setTransform(47.6,-28.45,0.5,0.5);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
@@ -108,25 +108,25 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// レイヤー_1
-	this.instance = new lib.CachedBmp_142();
+	this.instance = new lib.CachedBmp_8();
 	this.instance.setTransform(194.7,285.4,0.5,0.5);
 
-	this.instance_1 = new lib.CachedBmp_140();
+	this.instance_1 = new lib.CachedBmp_7();
 	this.instance_1.setTransform(97.95,152,0.5,0.5);
 
-	this.instance_2 = new lib.CachedBmp_139();
+	this.instance_2 = new lib.CachedBmp_6();
 	this.instance_2.setTransform(302.4,152,0.5,0.5);
 
-	this.instance_3 = new lib.CachedBmp_138();
+	this.instance_3 = new lib.CachedBmp_5();
 	this.instance_3.setTransform(222.95,114,0.5,0.5);
 
-	this.instance_4 = new lib.CachedBmp_133();
+	this.instance_4 = new lib.CachedBmp_4();
 	this.instance_4.setTransform(348,3,0.5,0.5);
 
-	this.instance_5 = new lib.CachedBmp_129();
+	this.instance_5 = new lib.CachedBmp_3();
 	this.instance_5.setTransform(152,3,0.5,0.5);
 
-	this.instance_6 = new lib.CachedBmp_128();
+	this.instance_6 = new lib.CachedBmp_2();
 	this.instance_6.setTransform(18,3,0.5,0.5);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_6},{t:this.instance_5},{t:this.instance_4},{t:this.instance_3},{t:this.instance_2},{t:this.instance_1},{t:this.instance}]}).wait(1));
@@ -136,11 +136,11 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 }).prototype = getMCSymbolPrototype(lib.シーン_1_レイヤー_1, null, null);
 
 
-(lib.シンボル6 = function(mode,startPosition,loop) {
+(lib.symbol6 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// レイヤー_1
-	this.instance = new lib.CachedBmp_132();
+	this.instance = new lib.CachedBmp_10();
 	this.instance.setTransform(0,0,0.5,0.5);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
@@ -178,52 +178,52 @@ p.nominalBounds = new cjs.Rectangle(-276,-201,552,402);
 	this.initialize(mode,startPosition,loop,{});
 
 	// レイヤー_2
-	this.instance = new lib.シンボル6("synched",0);
+	this.instance = new lib.symbol6("synched",0);
 	this.instance.setTransform(430.45,219.7,1,1,0,0,0,28,27.9);
 	this.instance.filters = [new cjs.ColorFilter(1, -1, -1, 1, 0, 0, 0, 0)];
 	this.instance.cache(-2,-2,60,60);
 
-	this.instance_1 = new lib.シンボル6("synched",0);
+	this.instance_1 = new lib.symbol6("synched",0);
 	this.instance_1.setTransform(345.2,219.7,1,1,0,0,0,28,27.9);
 	this.instance_1.filters = [new cjs.ColorFilter(1, 1, -1, 1, 0, 0, 0, 0)];
 	this.instance_1.cache(-2,-2,60,60);
 
-	this.instance_2 = new lib.シンボル6("synched",0);
+	this.instance_2 = new lib.symbol6("synched",0);
 	this.instance_2.setTransform(184,219.7,1,1,0,0,0,28,27.9);
 	this.instance_2.filters = [new cjs.ColorFilter(1, 1, 1, 1, 0, -255, 0, 0)];
 	this.instance_2.cache(-2,-2,60,60);
 
-	this.instance_3 = new lib.シンボル6("synched",0);
+	this.instance_3 = new lib.symbol6("synched",0);
 	this.instance_3.setTransform(98.75,219.7,1,1,0,0,0,28,27.9);
 	this.instance_3.filters = [new cjs.ColorFilter(1, 1, 1, 1, 0, 255, 0, 0)];
 	this.instance_3.cache(-2,-2,60,60);
 
-	this.instance_4 = new lib.シンボル6("synched",0);
+	this.instance_4 = new lib.symbol6("synched",0);
 	this.instance_4.setTransform(411,69.4,1,1,0,0,0,28,27.9);
 	this.instance_4.filters = [new cjs.ColorFilter(0.2, 0.2, 0.2, 1, 103.2, 200, 76.8, 0)];
 	this.instance_4.cache(-2,-2,60,60);
 
-	this.instance_5 = new lib.シンボル6("synched",0);
+	this.instance_5 = new lib.symbol6("synched",0);
 	this.instance_5.setTransform(476.05,69.4,1,1,0,0,0,28,27.9);
 	this.instance_5.filters = [new cjs.ColorFilter(0.15, 0.15, 0.15, 1, 97.75, 92.65, 216.75, 0)];
 	this.instance_5.cache(-2,-2,60,60);
 
-	this.instance_6 = new lib.シンボル6("synched",0);
+	this.instance_6 = new lib.symbol6("synched",0);
 	this.instance_6.setTransform(343,69.4,1,1,0,0,0,28,27.9);
 	this.instance_6.filters = [new cjs.ColorFilter(0.04, 0.04, 0.04, 1, 222.72, 92.16, 182.4, 0)];
 	this.instance_6.cache(-2,-2,60,60);
 
-	this.instance_7 = new lib.シンボル6("synched",0);
+	this.instance_7 = new lib.symbol6("synched",0);
 	this.instance_7.setTransform(242,69.4,1,1,0,0,0,28,27.9);
 	this.instance_7.filters = [new cjs.ColorFilter(0.46, 0.46, 0.46, 1, 0, 0, 0, 0)];
 	this.instance_7.cache(-2,-2,60,60);
 
-	this.instance_8 = new lib.シンボル6("synched",0);
+	this.instance_8 = new lib.symbol6("synched",0);
 	this.instance_8.setTransform(180,69.4,1,1,0,0,0,28,27.9);
 	this.instance_8.filters = [new cjs.ColorFilter(0.44, 0.44, 0.44, 1, 142.8, 142.8, 142.8, 0)];
 	this.instance_8.cache(-2,-2,60,60);
 
-	this.instance_9 = new lib.シンボル6("synched",0);
+	this.instance_9 = new lib.symbol6("synched",0);
 	this.instance_9.setTransform(58.75,69.4,1,1,0,0,0,28,27.9);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_9},{t:this.instance_8},{t:this.instance_7},{t:this.instance_6},{t:this.instance_5},{t:this.instance_4},{t:this.instance_3},{t:this.instance_2},{t:this.instance_1},{t:this.instance}]}).wait(1));
@@ -233,16 +233,16 @@ p.nominalBounds = new cjs.Rectangle(-276,-201,552,402);
 }).prototype = getMCSymbolPrototype(lib.シーン_1_レイヤー_2, null, null);
 
 
-(lib.シンボル8 = function(mode,startPosition,loop) {
+(lib.symbol8 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// レイヤー_1
-	this.instance = new lib.シンボル6();
+	this.instance = new lib.symbol6();
 	this.instance.setTransform(28,27.9,1,1,0,0,0,28,27.9);
 	this.instance.filters = [new cjs.ColorFilter(1, 1, 0.76953125, 1, 76, -28, 144, 0)];
 	this.instance.cache(-2,-2,60,60);
 
-	this.instance_1 = new lib.シンボル6("synched",0);
+	this.instance_1 = new lib.symbol6("synched",0);
 	this.instance_1.setTransform(-35,27.9,1,1,0,0,0,28,27.9);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_1},{t:this.instance}]}).wait(1));
@@ -253,16 +253,16 @@ p.nominalBounds = new cjs.Rectangle(-276,-201,552,402);
 p.nominalBounds = new cjs.Rectangle(-63,0,119,56);
 
 
-(lib.シンボル7 = function(mode,startPosition,loop) {
+(lib.symbol7 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// レイヤー_1
-	this.instance = new lib.シンボル8();
+	this.instance = new lib.symbol8();
 	this.instance.setTransform(126.95,88.85,1,1,0,0,0,28,27.9);
 	this.instance.filters = [new cjs.ColorFilter(0.55, 0.55, 0.55, 1, 72.45, 114.75, 4.5, 0)];
 	this.instance.cache(-65,-2,123,60);
 
-	this.instance_1 = new lib.シンボル6("synched",0);
+	this.instance_1 = new lib.symbol6("synched",0);
 	this.instance_1.setTransform(0.95,88.85,1,1,0,0,0,28,27.9);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_1},{t:this.instance}]}).wait(1));
@@ -273,11 +273,11 @@ p.nominalBounds = new cjs.Rectangle(-63,0,119,56);
 p.nominalBounds = new cjs.Rectangle(-27,61,182,56);
 
 
-(lib.シンボル5 = function(mode,startPosition,loop) {
+(lib.symbol5 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// レイヤー_2
-	this.instance = new lib.シンボル7();
+	this.instance = new lib.symbol7();
 	this.instance.setTransform(-95,-33.05,1,1,0,0,0,28,27.9);
 	this.instance.filters = [new cjs.ColorFilter(0.59, 0.59, 0.59, 1, 104.55, 104.55, 104.55, 0)];
 	this.instance.cache(-29,59,186,60);
@@ -285,7 +285,7 @@ p.nominalBounds = new cjs.Rectangle(-27,61,182,56);
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
 
 	// レイヤー_1
-	this.instance_1 = new lib.シンボル6("synched",0);
+	this.instance_1 = new lib.symbol6("synched",0);
 	this.instance_1.setTransform(-188,27.9,1,1,0,0,0,28,27.9);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(1));
@@ -300,7 +300,7 @@ p.nominalBounds = new cjs.Rectangle(-216,0,248,56);
 	this.initialize(mode,startPosition,loop,{});
 
 	// レイヤー_8
-	this.instance = new lib.シンボル5();
+	this.instance = new lib.symbol5();
 	this.instance.setTransform(384.05,354.55,1,1,0,0,0,28,27.9);
 	this.instance.alpha = 0.6211;
 
@@ -418,7 +418,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/game_atlas_.png?1596778657725", id:"game_atlas_"}
+		{src:"images/game_atlas_.png?1598936812175", id:"game_atlas_"}
 	],
 	preloads: []
 };

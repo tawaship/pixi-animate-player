@@ -1,4 +1,4 @@
-import { prepareAnimateAsync, TAnimateLibrary, TPlayerOption } from '@tawaship/pixi-animate-core';
+import { prepareAnimateAsync, TAnimateLibrary, TPlayerOption, TTickerData } from '@tawaship/pixi-animate-core';
 import { initStage } from '../common/core';
 import * as _PIXI from 'pixi.js';
 
@@ -106,7 +106,7 @@ namespace PIXI {
 				return this;
 			}
 			
-			private _handleTick(e) {
+			private _handleTick(e: TTickerData) {
 				this._stage.updateForPixi(e);
 				this.app.render();
 			}
