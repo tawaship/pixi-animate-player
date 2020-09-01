@@ -12,7 +12,7 @@ const pixim = conf.dependencies['@tawaship/pixim.js'].replace('^', '');
 
 const pixi_banner = [
 	'/*!',
-	` * @tawaship/pixi-animate-player.js - v${version}`,
+	` * pixi-animate-player - v${version}`,
 	' * ',
 	` * @require pixi.js v${pixi}`,
 	' * @author tawaship (makazu.mori@gmail.com)',
@@ -23,7 +23,7 @@ const pixi_banner = [
 
 const pixim_banner = [
 	'/*!',
-	` * @tawaship/pixim-animate-player.js - v${version}`,
+	` * Pixim-animate-player - v${version}`,
 	' * ',
 	` * @require pixi.js v${pixi}`,
 	` * @require @tawaship/pixim.js v${pixim}`,
