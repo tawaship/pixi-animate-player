@@ -6,7 +6,7 @@
   "typedocOptions": {
     "mode": "file",
     "readme": "docs/README.pixi.md",
-    "name": "pixi-createjs-player",
+    "name": "pixi-animate-player",
     "out": "docs/pixi/",
     "moduleResolution": "node",
     "gitRevision": "master",
