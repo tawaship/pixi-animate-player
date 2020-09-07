@@ -49,7 +49,7 @@
 					document.head.removeChild(script);
 					
 					var pRatio = window.devicePixelRatio || 1;
-					var player = new Pixim.animate.Player(data.comp, 'game', true, {
+					var player = new Pixim.animate.Player(data.comp, 'game', path, {
 						antialias: true,
 						resolution: pRatio
 					}, {
