@@ -86,6 +86,26 @@ p.nominalBounds = new cjs.Rectangle(0,0,51,45);
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(2));
 
 	// レイヤー_8
+	this.text = new cjs.Text("right", "24px 'MS PGothic'", "#6E6E6E");
+	this.text.textAlign = "right";
+	this.text.lineHeight = 26;
+	this.text.lineWidth = 170;
+	this.text.parent = this;
+	this.text.setTransform(536,321.6);
+
+	this.text_1 = new cjs.Text("left", "24px 'MS PGothic'", "#6E6E6E");
+	this.text_1.lineHeight = 26;
+	this.text_1.lineWidth = 170;
+	this.text_1.parent = this;
+	this.text_1.setTransform(366,235.25);
+
+	this.text_2 = new cjs.Text("center", "24px 'MS PGothic'", "#6E6E6E");
+	this.text_2.textAlign = "center";
+	this.text_2.lineHeight = 26;
+	this.text_2.lineWidth = 170;
+	this.text_2.parent = this;
+	this.text_2.setTransform(451,278.5);
+
 	this.aa = new cjs.Text("0", "24px 'MS PGothic'", "#6E6E6E");
 	this.aa.name = "aa";
 	this.aa.lineHeight = 26;
@@ -137,7 +157,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,51,45);
 	this.shape_10.graphics.beginFill("#6E6E6E").beginStroke().moveTo(-6.2,8).lineTo(-6.2,-8).lineTo(-0.6,-8).curveTo(2.2,-8,4.2,-6.1).curveTo(6.2,-4,6.2,0.1).curveTo(6.2,4.1,4.1,6.3).curveTo(2.3,8,-0.6,8).closePath().moveTo(-4.1,6.3).lineTo(-0.7,6.3).curveTo(1.1,6.3,2.2,5.1).curveTo(4,3.3,4,0.1).curveTo(4,-3.2,2.3,-4.9).curveTo(1,-6.3,-0.7,-6.3).lineTo(-4.1,-6.3).closePath();
 	this.shape_10.setTransform(373.825,155.65);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_10},{t:this.shape_9},{t:this.shape_8},{t:this.shape_7},{t:this.shape_6},{t:this.shape_5},{t:this.shape_4},{t:this.shape_3},{t:this.shape_2},{t:this.shape_1},{t:this.shape},{t:this.aa}]}).wait(2));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_10},{t:this.shape_9},{t:this.shape_8},{t:this.shape_7},{t:this.shape_6},{t:this.shape_5},{t:this.shape_4},{t:this.shape_3},{t:this.shape_2},{t:this.shape_1},{t:this.shape},{t:this.aa},{t:this.text_2},{t:this.text_1},{t:this.text}]}).wait(2));
 
 	// レイヤー_2
 	this.shape_11 = new cjs.Shape();
@@ -291,7 +311,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/game_atlas_.png?1598936756618", id:"game_atlas_"}
+		{src:"images/game_atlas_.png?1599465193421", id:"game_atlas_"}
 	],
 	preloads: []
 };

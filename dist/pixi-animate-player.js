@@ -8,7 +8,7 @@
 this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
     "use strict";
     /*!
-     * @tawaship/pixi-animate-core - v1.0.11
+     * @tawaship/pixi-animate-core - v1.0.14
      * 
      * @require pixi.js v5.3.2
      * @author tawaship (makazu.mori@gmail.com)
@@ -724,8 +724,8 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
                 _off: !1,
                 mask: null,
                 filters: null
-            }, this._pixiData = createGraphicsPixiData(this), this._pixiData.instance.beginFill(16772846, 1), 
-            this._pixiData.strokeFill = 0, this._pixiData.strokeAlpha = 1, CreatejsGraphicsTemp.apply(this, arguments);
+            }, this._pixiData = createGraphicsPixiData(this), CreatejsGraphicsTemp.apply(this, arguments), 
+            this._pixiData.instance.beginFill(16772846, 1), this._pixiData.strokeFill = 0, this._pixiData.strokeAlpha = 1;
         }
         superclass && (CreatejsGraphics.__proto__ = superclass), CreatejsGraphics.prototype = Object.create(superclass && superclass.prototype), 
         CreatejsGraphics.prototype.constructor = CreatejsGraphics;
@@ -950,8 +950,9 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
     }
     var CreatejsTextTemp = window.createjs.Text, CreatejsText = function(superclass) {
         function CreatejsText(text, font, color) {
-            superclass.apply(this, arguments), this._originParams = createTextOriginParam(text, font, color);
+            void 0 === color && (color = "#000000"), superclass.apply(this, arguments), this._originParams = createTextOriginParam(text, font, color);
             var _font = this._parseFont(font), t = new PixiText(text, {
+                fontWeight: _font.fontWeight,
                 fontSize: _font.fontSize,
                 fontFamily: _font.fontFamily,
                 fill: this._parseColor(color),
@@ -990,9 +991,10 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
         }, prototypeAccessors$11.text.set = function(text) {
             this._pixiData.instance.text.text = text, this._align(this.textAlign), this._originParams.text = text;
         }, CreatejsText.prototype._parseFont = function(font) {
-            var p = font.split(" ");
-            return {
-                fontSize: Number((p.shift() || "0px").replace("px", "")),
+            var p = font.split(" "), w = "normal", s = p.shift();
+            return -1 === s.indexOf("px") && (w = s, s = p.shift()), {
+                fontWeight: w,
+                fontSize: Number((s || "0px").replace("px", "")),
                 fontFamily: p.join(" ").replace(/'/g, "")
             };
         }, prototypeAccessors$11.font.get = function() {
@@ -1008,7 +1010,7 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
         }, prototypeAccessors$11.color.set = function(color) {
             this._pixiData.instance.text.style.fill = this._parseColor(color), this._originParams.color = color;
         }, CreatejsText.prototype._align = function(align) {
-            "left" !== align ? "center" !== align ? "right" !== align || (this._pixiData.instance.text.x = -this.lineWidth) : this._pixiData.instance.text.x = -this.lineWidth / 2 : this._pixiData.instance.text.x = 0;
+            "left" !== align ? "center" !== align ? "right" !== align || (this._pixiData.instance.text.x = -this._pixiData.instance.text.width) : this._pixiData.instance.text.x = -this._pixiData.instance.text.width / 2 : this._pixiData.instance.text.x = 0;
         }, prototypeAccessors$11.textAlign.get = function() {
             return this._originParams.textAlign;
         }, prototypeAccessors$11.textAlign.set = function(align) {
@@ -1020,7 +1022,8 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
         }, prototypeAccessors$11.lineWidth.get = function() {
             return this._originParams.lineWidth;
         }, prototypeAccessors$11.lineWidth.set = function(width) {
-            this._pixiData.instance.text.style.wordWrapWidth = width, this._originParams.lineWidth = width;
+            this._pixiData.instance.text.style.wordWrapWidth = width, this._align(this.textAlign), 
+            this._originParams.lineWidth = width;
         }, prototypeAccessors$11.pixi.get = function() {
             return this._pixiData.instance;
         }, CreatejsText.prototype.updateForPixi = function(e) {
