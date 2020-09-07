@@ -55,7 +55,8 @@
 					
 					player
 						.prepareAsync({
-							useSynchedTimeline: true
+							useSynchedTimeline: true,
+							crossOrigin: false
 						})
 						.then(function(lib) {
 							player.app.view.style.width = lib.properties.width + 'px';

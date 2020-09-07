@@ -47,7 +47,8 @@ var player = new Pixim.animate.Player(
 
 player
 	.prepareAsync({
-		useSynchedTimeline: true
+		useSynchedTimeline: true,
+		crossOrigin: false
 	})
 	.then(function() {
 		player.play();

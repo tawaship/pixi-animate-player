@@ -1,5 +1,5 @@
 /*!
- * Pixim-animate-player - v1.0.2
+ * Pixim-animate-player - v1.0.3
  * 
  * @require pixi.js v5.3.2
  * @require @tawaship/pixim.js v1.6.1
@@ -9,7 +9,7 @@
 this.Pixim = this.Pixim || {}, function(exports, pixi_js, _Pixim) {
     "use strict";
     /*!
-     * @tawaship/pixi-animate-core - v1.0.10
+     * @tawaship/pixi-animate-core - v1.0.11
      * 
      * @require pixi.js v5.3.2
      * @author tawaship (makazu.mori@gmail.com)
@@ -1131,8 +1131,8 @@ this.Pixim = this.Pixim || {}, function(exports, pixi_js, _Pixim) {
                                 }
                             }
                         }), new Promise((function(resolve, reject) {
-                            0 === lib.properties.manifest.length && resolve({});
-                            var loader = new window.createjs.LoadQueue(!1);
+                            0 === lib.properties.manifest.length && resolve({}), basepath && (basepath = (basepath + "/").replace(/([^\:])\/\//, "$1/"));
+                            var loader = new window.createjs.LoadQueue(!1, basepath);
                             if (loader.installPlugin(window.createjs.Sound), loader.addEventListener("fileload", (function(evt) {
                                 !function(evt, comp) {
                                     var images = comp.getImages();
@@ -1140,10 +1140,9 @@ this.Pixim = this.Pixim || {}, function(exports, pixi_js, _Pixim) {
                                 }(evt, comp);
                             })), loader.addEventListener("complete", (function(evt) {
                                 resolve(evt);
-                            })), basepath) {
-                                basepath = (basepath + "/").replace(/([^\:])\/\//, "$1/");
+                            })), options.crossOrigin) {
                                 for (var m = lib.properties.manifest, i = 0; i < m.length; i++) {
-                                    m[i].src = basepath + m[i].src;
+                                    m[i].crossOrigin = !0;
                                 }
                             }
                             loader.loadManifest(lib.properties.manifest);

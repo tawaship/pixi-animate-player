@@ -49,7 +49,7 @@
 					document.head.removeChild(script);
 					
 					var pRatio = window.devicePixelRatio || 1;
-					var player = new Pixim.animate.Player(data.comp, 'game', path, {
+					var player = new Pixim.animate.Player(data.comp, 'game', true, {
 						antialias: true,
 						resolution: pRatio
 					}, {
@@ -58,7 +58,8 @@
 					
 					player
 						.prepareAsync({
-							useSynchedTimeline: true
+							useSynchedTimeline: true,
+							crossOrigin: false
 						})
 						.then(function(lib) {
 							player.fullScreen({
