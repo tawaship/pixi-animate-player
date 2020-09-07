@@ -56,4 +56,4 @@ player
 
 ## Samples
 
-[github](../../samples/)
+[github](https://tawaship.github.io/Pixim-animate-player/samples/)
