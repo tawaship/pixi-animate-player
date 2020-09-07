@@ -12,5 +12,5 @@
     "gitRevision": "master",
     "includeVersion": true
   },
-  "exclude": ["node_modules", "src/**/*.d.ts"]
+  "exclude": []
 }

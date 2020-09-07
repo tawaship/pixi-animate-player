@@ -59,6 +59,7 @@ namespace Pixim {
 			/**
 			 * Prepare createjs content published with Adobe Animate.
 			 * @async
+			 * @see https://tawaship.github.io/pixi-animate-core/globals.html#tplayeroption
 			 */
 			prepareAsync(options: TPlayerOption = {}) {
 				return prepareAnimateAsync(this._id, this._basepath, options)

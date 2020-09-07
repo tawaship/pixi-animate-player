@@ -9,13 +9,6 @@ declare const window: any;
 
 namespace PIXI {
 	export namespace animate {
-		export type TPlayerOption = {
-			useSynchedTimeline?: boolean
-		};
-		
-		/**
-		 * @see https://tawaship.github.io/Pixim.js/classes/pixim.application.html
-		 */
 		export class Player {
 			private _app: _PIXI.Application;
 			private _id: string;
@@ -28,6 +21,7 @@ namespace PIXI {
 			 * @param rootName Root class name of Animate content.
 			 * @param basepath Directory path of Animate content.
 			 * @param pixiOptions Options of PIXI.Application.
+			 * @see http://pixijs.download/release/docs/PIXI.Application.html
 			 */
 			constructor(id: string, rootName: string, basepath: string, pixiOptions: Object = {}) {
 				const comp = window.AdobeAn.getComposition(id);
@@ -65,6 +59,7 @@ namespace PIXI {
 			/**
 			 * Prepare createjs content published with Adobe Animate.
 			 * @async
+			 * @see https://tawaship.github.io/pixi-animate-core/globals.html#tplayeroption
 			 */
 			prepareAsync(options: TPlayerOption = {}) {
 				return prepareAnimateAsync(this._id, this._basepath, options)
