@@ -60,8 +60,8 @@ player
 
 ## Links
 
-<a href="https://github.com/tawaship/Pixim-animate-player/" target="_blank">github</a>
+[github](https://github.com/tawaship/Pixim-animate-player)
 
-<a href="https://tawaship.github.io/Pixim-animate-player/docs/" target="_blank">documents</a>
+[documents](https://tawaship.github.io/Pixim-animate-player/docs/)
 
-<a href="https://tawaship.github.io/Pixim-animate-player/samples/" target="_blank">samples</a>
+[samples](https://tawaship.github.io/Pixim-animate-player/samples/)
