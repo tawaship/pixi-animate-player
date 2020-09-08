@@ -55,4 +55,6 @@ player
 
 ## Samples
 
-[github](https://tawaship.github.io/Pixim-animate-player/samples/)
+[github](https://github.com/tawaship/Pixim-animate-player){{:target="_blank"}
+[documents](https://tawaship.github.io/Pixim-animate-player/docs/){{:target="_blank"}
+[samples](https://tawaship.github.io/Pixim-animate-player/samples/){{:target="_blank"}

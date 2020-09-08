@@ -1,5 +1,5 @@
 /*!
- * pixi-animate-player - v1.0.4
+ * pixi-animate-player - v1.1.0
  * 
  * @require pixi.js v5.3.2
  * @author tawaship (makazu.mori@gmail.com)
