@@ -53,7 +53,7 @@ player
 	});
 ```
 
-## Samples
+## Links
 
 [github](https://github.com/tawaship/Pixim-animate-player)
 
