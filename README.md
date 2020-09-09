@@ -13,7 +13,7 @@ A module for playing content published by Adobe Animate with "[Pixim.js](https:/
 
 - A complete set of content published with Adobe Animate version 20.02
 - pixi.js 5.3.2
-- Pixim.js 1.6.1
+- Pixim.js 1.6.2
 
 I have not confirmed the operation on other versions.
 

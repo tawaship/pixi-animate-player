@@ -2,7 +2,7 @@
  * Pixim-animate-player - v1.1.0
  * 
  * @require pixi.js v5.3.2
- * @require @tawaship/pixim.js v1.6.1
+ * @require @tawaship/pixim.js v1.6.2
  * @author tawaship (makazu.mori@gmail.com)
  * @license MIT
  */

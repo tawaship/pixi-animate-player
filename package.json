@@ -40,7 +40,7 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@tawaship/pixim.js": "^1.6.1",
+    "@tawaship/pixim.js": "^1.6.2",
     "pixi.js": "^5.3.2"
   }
 }
