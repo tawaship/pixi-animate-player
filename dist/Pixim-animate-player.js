@@ -1,8 +1,8 @@
 /*!
- * Pixim-animate-player - v1.1.1
+ * Pixim-animate-player - v1.1.2
  * 
  * @require pixi.js v5.3.2
- * @require @tawaship/pixim.js v1.7.2
+ * @require @tawaship/pixim.js v1.7.3
  * @author tawaship (makazu.mori@gmail.com)
  * @license MIT
  */
