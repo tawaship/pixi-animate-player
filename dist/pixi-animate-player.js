@@ -1,5 +1,5 @@
 /*!
- * pixi-animate-player - v1.2.0
+ * pixi-animate-player - v2.0.1
  * 
  * @require pixi.js v5.3.2
  * @author tawaship (makazu.mori@gmail.com)
@@ -8,7 +8,7 @@
 this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
     "use strict";
     /*!
-     * @tawaship/pixi-animate-core - v1.2.0
+     * @tawaship/pixi-animate-core - v2.0.1
      * 
      * @require pixi.js v5.3.2
      * @author tawaship (makazu.mori@gmail.com)
@@ -323,7 +323,7 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
             subInstance: pixi
         });
     }
-    var CreatejsMovieClipTemp = window.createjs.MovieClip, CreatejsMovieClip = function(superclass) {
+    var CreatejsMovieClipTemp = window.createjs.MovieClip, _funcFlag = !0, CreatejsMovieClip = function(superclass) {
         function CreatejsMovieClip() {
             for (var args = [], len = arguments.length; len--; ) {
                 args[len] = arguments[len];
@@ -353,7 +353,7 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
                 _off: !1,
                 mask: null,
                 filters: null
-            }, this._pixiData = createMovieClipPixiData(this);
+            }, this._pixiData = createMovieClipPixiData(this), this.updateForPixi = _funcFlag ? this._updateForPixiSynched : this._updateForPixiUnsynched;
         }, CreatejsMovieClip.prototype.initialize = function() {
             for (var args = [], len = arguments.length; len--; ) {
                 args[len] = arguments[len];
@@ -371,8 +371,12 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
             return this._pixiData.subInstance.removeChildren(), superclass.prototype.removeAllChldren.call(this);
         }, prototypeAccessors$1.pixi.get = function() {
             return this._pixiData.instance;
-        }, CreatejsMovieClip.prototype.updateForPixi = function(e) {
+        }, CreatejsMovieClip.selectUpdateFunc = function(flag) {
+            _funcFlag = flag;
+        }, CreatejsMovieClip.prototype._updateForPixiSynched = function(e) {
             return this._updateState(), updateDisplayObjectChildren(this, e);
+        }, CreatejsMovieClip.prototype._updateForPixiUnsynched = function(e) {
+            return this._tick(e);
         }, Object.defineProperties(CreatejsMovieClip.prototype, prototypeAccessors$1), CreatejsMovieClip;
     }(window.createjs.MovieClip);
     appendDisplayObjectDescriptor(CreatejsMovieClip), Object.defineProperties(CreatejsMovieClip.prototype, {
@@ -1112,7 +1116,7 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
         }
         return superclass && (CreatejsButtonHelper.__proto__ = superclass), CreatejsButtonHelper.prototype = Object.create(superclass && superclass.prototype), 
         CreatejsButtonHelper.prototype.constructor = CreatejsButtonHelper, CreatejsButtonHelper;
-    }(window.createjs.ButtonHelper);
+    }(window.createjs.ButtonHelper), _isPrepare = !1;
     !function(obj) {
         for (var i in void 0 === obj && (obj = {}), window.createjs.Stage = CreatejsStage, 
         window.createjs.StageGL = CreatejsStageGL, window.createjs.MovieClip = CreatejsMovieClip, 
@@ -1133,8 +1137,8 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
         }
     }), function(PIXI) {
         !function(animate) {
-            var Player = function(id, rootName, basepath, pixiOptions) {
-                void 0 === pixiOptions && (pixiOptions = {});
+            var Player = function(id, rootName, basepath, options, pixiOptions) {
+                void 0 === options && (options = {}), void 0 === pixiOptions && (pixiOptions = {});
                 var comp = window.AdobeAn.getComposition(id);
                 if (!comp) {
                     throw new Error("no composition");
@@ -1150,7 +1154,18 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
                     backgroundColor: parseInt(prop.color.slice(1), 16)
                 })), document.body.appendChild(this._app.view), this._app.stop(), this._app.render(), 
                 this._id = id, this._rootClass = root, this._basepath = basepath, window.createjs.Ticker.framerate = prop.fps, 
-                this._handleTick = this._handleTick.bind(this);
+                this._handleTick = this._handleTick.bind(this), function(options) {
+                    void 0 === options && (options = {}), _isPrepare || (CreatejsMovieClip.selectUpdateFunc(options.useSynchedTimeline), 
+                    options.useMotionGuide && window.createjs.MotionGuidePlugin.install(), _isPrepare = !0);
+                }(options), function(options) {
+                    void 0 === options && (options = {}), options.useSynchedTimeline || Object.defineProperties(window.createjs.StageGL.prototype, {
+                        updateForPixi: {
+                            value: function(e) {
+                                this._tick(e);
+                            }
+                        }
+                    });
+                }(options);
             }, prototypeAccessors = {
                 app: {
                     configurable: !0
@@ -1165,13 +1180,7 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
                         throw new Error("no composition");
                     }
                     var lib = comp.getLibrary();
-                    return options.useSynchedTimeline || Object.defineProperties(window.createjs.MovieClip.prototype, {
-                        updateForPixi: {
-                            value: function(e) {
-                                return this._tick(e);
-                            }
-                        }
-                    }), options.useMotionGuide && window.createjs.MotionGuidePlugin.install(), new Promise((function(resolve, reject) {
+                    return new Promise((function(resolve, reject) {
                         0 === lib.properties.manifest.length && resolve({}), basepath && (basepath = (basepath + "/").replace(/([^\:])\/\//, "$1/"));
                         var loader = new window.createjs.LoadQueue(!1, basepath);
                         if (loader.installPlugin(window.createjs.Sound), loader.addEventListener("fileload", (function(evt) {
@@ -1198,15 +1207,7 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
                     }));
                 }(this._id, this._basepath, options).then((function(lib) {
                     var exportRoot = new this$1._rootClass;
-                    return this$1._stage = new lib.Stage, function(stage, options) {
-                        void 0 === options && (options = {}), options.useSynchedTimeline || Object.defineProperties(window.createjs.StageGL.prototype, {
-                            updateForPixi: {
-                                value: function(e) {
-                                    this._tick(e);
-                                }
-                            }
-                        });
-                    }(this$1._stage, options), Object.defineProperties(window, {
+                    return this$1._stage = new lib.Stage, Object.defineProperties(window, {
                         exportRoot: {
                             value: exportRoot
                         },

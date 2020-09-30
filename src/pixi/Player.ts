@@ -1,4 +1,4 @@
-import { prepareAnimateAsync, TAnimateLibrary, TPlayerOption, TTickerData } from '@tawaship/pixi-animate-core';
+import { TAnimateLibrary, prepareAnimate, IPrepareOption, loadAssetAsync, ILoadAssetOption, TTickerData } from '@tawaship/pixi-animate-core';
 import { initStage } from '../common/core';
 import * as _PIXI from 'pixi.js';
 
@@ -22,8 +22,9 @@ namespace PIXI {
 			 * @param basepath Directory path of Animate content.
 			 * @param pixiOptions Options of PIXI.Application.
 			 * @see http://pixijs.download/release/docs/PIXI.Application.html
+			 * @see https://tawaship.github.io/pixi-animate-core/interfaces/iprepareoption.html
 			 */
-			constructor(id: string, rootName: string, basepath: string, pixiOptions: Object = {}) {
+			constructor(id: string, rootName: string, basepath: string, options: IPrepareOption = {}, pixiOptions: Object = {}) {
 				const comp = window.AdobeAn.getComposition(id);
 				if (!comp) {
 					throw new Error('no composition');
@@ -54,20 +55,22 @@ namespace PIXI {
 				window.createjs.Ticker.framerate = prop.fps;
 				
 				this._handleTick = this._handleTick.bind(this);
+				
+				prepareAnimate(options);
+				initStage(options);
 			}
 			
 			/**
 			 * Prepare createjs content published with Adobe Animate.
 			 * @async
-			 * @see https://tawaship.github.io/pixi-animate-core/globals.html#tplayeroption
+			 * @see https://tawaship.github.io/pixi-animate-core/interfaces/iloadassetoption.html
 			 */
-			prepareAsync(options: TPlayerOption = {}) {
-				return prepareAnimateAsync(this._id, this._basepath, options)
+			prepareAsync(options: ILoadAssetOption = {}) {
+				return loadAssetAsync(this._id, this._basepath, options)
 					.then((lib: TAnimateLibrary) => {
 						const exportRoot = new this._rootClass();
 						
 						this._stage = new lib.Stage();
-						initStage(this._stage, options);
 						
 						Object.defineProperties(window, {
 							exportRoot: {

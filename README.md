@@ -7,13 +7,13 @@ A module for playing content published by Adobe Animate with "[Pixim.js](https:/
 ---
 
 ## Core module
-[pixi-animate-core](https://tawaship.github.io/pixi-animate-core/)
+[@tawaship/pixi-animate-core](https://tawaship.github.io/pixi-animate-core/)
 
 ## Support version
 
 - A complete set of content published with Adobe Animate version 20.02 / 20.5.1
 - pixi.js 5.3.2
-- Pixim.js 1.7.3
+- Pixim.js 1.7.x
 
 I have not confirmed the operation on other versions.
 
@@ -41,6 +41,10 @@ var player = new Pixim.animate.Player(
 	"[root class name]", // Root class name of Animate content.
 	"[content directory path]", // Directory path of Animate content.
 	{
+		useSynchedTimeline: true,
+		useMotionGuide: false
+	},
+	{
 		antialias: true
 	}, // Options of PIXI.Application.
 	{
@@ -50,9 +54,7 @@ var player = new Pixim.animate.Player(
 
 player
 	.prepareAsync({
-		useSynchedTimeline: true,
-		crossOrigin: false,
-		useMotionGuide: false
+		crossOrigin: false
 	})
 	.then(function() {
 		player.play();

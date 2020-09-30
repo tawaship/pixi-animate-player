@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Player | pixi-animate-player - v1.2.0</title>
-	<meta name="description" content="Documentation for pixi-animate-player - v1.2.0">
+	<title>Player | pixi-animate-player - v2.0.1</title>
+	<meta name="description" content="Documentation for pixi-animate-player - v2.0.1">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">pixi-animate-player - v1.2.0</a>
+					<a href="../index.html" class="title">pixi-animate-player - v2.0.1</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -124,7 +124,7 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Player<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, rootName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, basepath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, pixiOptions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="pixi.animate.player.html" class="tsd-signature-type">Player</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Player<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, rootName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, basepath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">IPrepareOption</span>, pixiOptions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="pixi.animate.player.html" class="tsd-signature-type">Player</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -137,6 +137,9 @@
 								<dl class="tsd-comment-tags">
 									<dt>see</dt>
 									<dd><p><a href="http://pixijs.download/release/docs/PIXI.Application.html">http://pixijs.download/release/docs/PIXI.Application.html</a></p>
+									</dd>
+									<dt>see</dt>
+									<dd><p><a href="https://tawaship.github.io/pixi-animate-core/interfaces/iprepareoption.html">https://tawaship.github.io/pixi-animate-core/interfaces/iprepareoption.html</a></p>
 									</dd>
 								</dl>
 							</div>
@@ -165,6 +168,9 @@
 											<p>Directory path of Animate content.</p>
 										</div>
 									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-type">IPrepareOption</span><span class="tsd-signature-symbol"> = {}</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> pixiOptions: <span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol"> = {}</span></h5>
@@ -245,7 +251,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tawaship/Pixim-animate-player/blob/master/src/pixi/Player.ts#L109">pixi/Player.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/tawaship/Pixim-animate-player/blob/master/src/pixi/Player.ts#L112">pixi/Player.ts:112</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">_PIXI.Application</span></h4>
@@ -265,7 +271,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tawaship/Pixim-animate-player/blob/master/src/pixi/Player.ts#L104">pixi/Player.ts:104</a></li>
+									<li>Defined in <a href="https://github.com/tawaship/Pixim-animate-player/blob/master/src/pixi/Player.ts#L107">pixi/Player.ts:107</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -288,7 +294,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tawaship/Pixim-animate-player/blob/master/src/pixi/Player.ts#L92">pixi/Player.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/tawaship/Pixim-animate-player/blob/master/src/pixi/Player.ts#L95">pixi/Player.ts:95</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -299,13 +305,13 @@
 					<a name="prepareasync" class="tsd-anchor"></a>
 					<h3>prepare<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">prepare<wbr>Async<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">TPlayerOption</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TAnimateLibrary</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">prepare<wbr>Async<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ILoadAssetOption</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TAnimateLibrary</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tawaship/Pixim-animate-player/blob/master/src/pixi/Player.ts#L64">pixi/Player.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/tawaship/Pixim-animate-player/blob/master/src/pixi/Player.ts#L68">pixi/Player.ts:68</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -316,14 +322,14 @@
 									<dt>async</dt>
 									<dd></dd>
 									<dt>see</dt>
-									<dd><p><a href="https://tawaship.github.io/pixi-animate-core/globals.html#tplayeroption">https://tawaship.github.io/pixi-animate-core/globals.html#tplayeroption</a></p>
+									<dd><p><a href="https://tawaship.github.io/pixi-animate-core/interfaces/iloadassetoption.html">https://tawaship.github.io/pixi-animate-core/interfaces/iloadassetoption.html</a></p>
 									</dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-type">TPlayerOption</span><span class="tsd-signature-symbol"> = {}</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-type">ILoadAssetOption</span><span class="tsd-signature-symbol"> = {}</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TAnimateLibrary</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -340,7 +346,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tawaship/Pixim-animate-player/blob/master/src/pixi/Player.ts#L98">pixi/Player.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/tawaship/Pixim-animate-player/blob/master/src/pixi/Player.ts#L101">pixi/Player.ts:101</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>

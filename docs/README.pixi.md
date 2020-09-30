@@ -7,7 +7,7 @@ A module for playing content published by Adobe Animate with "[pixi.js](https://
 ---
 
 ## Core module
-[pixi-animate-core](https://tawaship.github.io/pixi-animate-core/)
+[@tawaship/pixi-animate-core](https://tawaship.github.io/pixi-animate-core/)
 
 ## Support version
 
@@ -39,15 +39,17 @@ var player = new PIXI.animate.Player(
 	"[root class name]", // Root class name of Animate content.
 	"[content directory path]", // Directory path of Animate content.
 	{
+		useSynchedTimeline: true,
+		useMotionGuide: false
+	},
+	{
 		antialias: true
 	} // Options of PIXI.Application.
 );
 
 player
 	.prepareAsync({
-		useSynchedTimeline: true,
-		crossOrigin: false,
-		useMotionGuide: false
+		crossOrigin: false
 	})
 	.then(function() {
 		player.play();
