@@ -1,5 +1,5 @@
 /*!
- * Pixim-animate-player - v1.1.3
+ * Pixim-animate-player - v1.2.0
  * 
  * @require pixi.js v5.3.2
  * @require @tawaship/pixim.js v1.7.3
