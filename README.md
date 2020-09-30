@@ -11,7 +11,7 @@ A module for playing content published by Adobe Animate with "[Pixim.js](https:/
 
 ## Support version
 
-- A complete set of content published with Adobe Animate version 20.02
+- A complete set of content published with Adobe Animate version 20.02 / 20.5.1
 - pixi.js 5.3.2
 - Pixim.js 1.7.3
 
@@ -51,7 +51,8 @@ var player = new Pixim.animate.Player(
 player
 	.prepareAsync({
 		useSynchedTimeline: true,
-		crossOrigin: false
+		crossOrigin: false,
+		useMotionGuide: false
 	})
 	.then(function() {
 		player.play();

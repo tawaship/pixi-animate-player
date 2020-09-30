@@ -1,5 +1,5 @@
 /*!
- * pixi-animate-player - v1.1.2
+ * pixi-animate-player - v1.1.3
  * 
  * @require pixi.js v5.3.2
  * @author tawaship (makazu.mori@gmail.com)
@@ -8,7 +8,7 @@
 this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
     "use strict";
     /*!
-     * @tawaship/pixi-animate-core - v1.1.0
+     * @tawaship/pixi-animate-core - v1.2.0
      * 
      * @require pixi.js v5.3.2
      * @author tawaship (makazu.mori@gmail.com)
@@ -26,7 +26,16 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
         }
         return !0;
     }
-    var CreatejsStageGL = function(superclass) {
+    var CreatejsStage = function(superclass) {
+        function CreatejsStage() {
+            superclass.apply(this, arguments);
+        }
+        return superclass && (CreatejsStage.__proto__ = superclass), CreatejsStage.prototype = Object.create(superclass && superclass.prototype), 
+        CreatejsStage.prototype.constructor = CreatejsStage, CreatejsStage.prototype.updateForPixi = function(props) {
+            this.tickOnUpdate && this.tick(props), this.dispatchEvent("drawstart"), updateDisplayObjectChildren(this, props), 
+            this.dispatchEvent("drawend");
+        }, CreatejsStage;
+    }(window.createjs.Stage), CreatejsStageGL = function(superclass) {
         function CreatejsStageGL() {
             superclass.apply(this, arguments);
         }
@@ -319,7 +328,7 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
             for (var args = [], len = arguments.length; len--; ) {
                 args[len] = arguments[len];
             }
-            superclass.apply(this, arguments), this._initForPixi(), CreatejsMovieClipTemp.apply(this, arguments);
+            superclass.call(this), this._initForPixi(), CreatejsMovieClipTemp.apply(this, arguments);
         }
         superclass && (CreatejsMovieClip.__proto__ = superclass), CreatejsMovieClip.prototype = Object.create(superclass && superclass.prototype), 
         CreatejsMovieClip.prototype.constructor = CreatejsMovieClip;
@@ -417,7 +426,7 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
             for (var args = [], len = arguments.length; len--; ) {
                 args[len] = arguments[len];
             }
-            superclass.apply(this, arguments), this._initForPixi(), CreatejsSpriteTemp.apply(this, arguments);
+            superclass.call(this), this._initForPixi(), CreatejsSpriteTemp.apply(this, arguments);
         }
         superclass && (CreatejsSprite.__proto__ = superclass), CreatejsSprite.prototype = Object.create(superclass && superclass.prototype), 
         CreatejsSprite.prototype.constructor = CreatejsSprite;
@@ -1105,11 +1114,12 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
         CreatejsButtonHelper.prototype.constructor = CreatejsButtonHelper, CreatejsButtonHelper;
     }(window.createjs.ButtonHelper);
     !function(obj) {
-        for (var i in void 0 === obj && (obj = {}), window.createjs.StageGL = CreatejsStageGL, 
-        window.createjs.MovieClip = CreatejsMovieClip, window.createjs.Sprite = CreatejsSprite, 
-        window.createjs.Shape = CreatejsShape, window.createjs.Bitmap = CreatejsBitmap, 
-        window.createjs.Graphics = CreatejsGraphics, window.createjs.Text = CreatejsText, 
-        window.createjs.ButtonHelper = CreatejsButtonHelper, obj) {
+        for (var i in void 0 === obj && (obj = {}), window.createjs.Stage = CreatejsStage, 
+        window.createjs.StageGL = CreatejsStageGL, window.createjs.MovieClip = CreatejsMovieClip, 
+        window.createjs.Sprite = CreatejsSprite, window.createjs.Shape = CreatejsShape, 
+        window.createjs.Bitmap = CreatejsBitmap, window.createjs.Graphics = CreatejsGraphics, 
+        window.createjs.Text = CreatejsText, window.createjs.ButtonHelper = CreatejsButtonHelper, 
+        obj) {
             window.createjs[i] = obj[i];
         }
     }(), Object.defineProperties(window, {
@@ -1161,7 +1171,7 @@ this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
                                 return this._tick(e);
                             }
                         }
-                    }), new Promise((function(resolve, reject) {
+                    }), options.useMotionGuide && window.createjs.MotionGuidePlugin.install(), new Promise((function(resolve, reject) {
                         0 === lib.properties.manifest.length && resolve({}), basepath && (basepath = (basepath + "/").replace(/([^\:])\/\//, "$1/"));
                         var loader = new window.createjs.LoadQueue(!1, basepath);
                         if (loader.installPlugin(window.createjs.Sound), loader.addEventListener("fileload", (function(evt) {

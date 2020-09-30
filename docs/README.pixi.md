@@ -11,7 +11,7 @@ A module for playing content published by Adobe Animate with "[pixi.js](https://
 
 ## Support version
 
-- A complete set of content published with Adobe Animate version 20.02
+- A complete set of content published with Adobe Animate version 20.02 / 20.5.1
 - pixi.js 5.3.2
 
 I have not confirmed the operation on other versions.
@@ -46,7 +46,8 @@ var player = new PIXI.animate.Player(
 player
 	.prepareAsync({
 		useSynchedTimeline: true,
-		crossOrigin: false
+		crossOrigin: false,
+		useMotionGuide: false
 	})
 	.then(function() {
 		player.play();

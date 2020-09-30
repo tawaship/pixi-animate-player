@@ -94,16 +94,18 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 	this.text.setTransform(465.15,9.8,0.8083,0.8083);
 
 	this.text_1 = new cjs.Text("masked object", "bold 20px 'Nirmala UI'", "#006699");
+	this.text_1.textAlign = "center";
 	this.text_1.lineHeight = 29;
 	this.text_1.lineWidth = 168;
 	this.text_1.parent = this;
-	this.text_1.setTransform(167.75,9.8,0.8083,0.8083);
+	this.text_1.setTransform(235.65,9.8,0.8083,0.8083);
 
 	this.text_2 = new cjs.Text("masking object", "bold 20px 'Nirmala UI'", "#006699");
+	this.text_2.textAlign = "center";
 	this.text_2.lineHeight = 29;
 	this.text_2.lineWidth = 168;
 	this.text_2.parent = this;
-	this.text_2.setTransform(16.15,9.8,0.8083,0.8083);
+	this.text_2.setTransform(84.05,9.8,0.8083,0.8083);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.text_2},{t:this.text_1},{t:this.text}]}).wait(1));
 
