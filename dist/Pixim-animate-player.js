@@ -1,5 +1,5 @@
 /*!
- * Pixim-animate-player - v2.0.1
+ * Pixim-animate-player - v2.0.2
  * 
  * @require pixi.js v5.3.2
  * @require @tawaship/pixim.js v1.7.4
@@ -9,7 +9,7 @@
 this.Pixim = this.Pixim || {}, function(exports, pixi_js, _Pixim) {
     "use strict";
     /*!
-     * @tawaship/pixi-animate-core - v2.0.1
+     * @tawaship/pixi-animate-core - v2.0.2
      * 
      * @require pixi.js v5.3.2
      * @author tawaship (makazu.mori@gmail.com)
@@ -981,8 +981,8 @@ this.Pixim = this.Pixim || {}, function(exports, pixi_js, _Pixim) {
             for (var args = [], len = arguments.length - 3; len-- > 0; ) {
                 args[len] = arguments[len + 3];
             }
-            superclass.apply(this, arguments), (ref = this)._initForPixi.apply(ref, [ text, font, color ].concat(args)), 
-            CreatejsTextTemp.apply(this, arguments);
+            superclass.apply(this, [ text, font, color ].concat(args)), (ref = this)._initForPixi.apply(ref, [ text, font, color ].concat(args)), 
+            CreatejsTextTemp.call.apply(CreatejsTextTemp, [ this, text, font, color ].concat(args));
         }
         superclass && (CreatejsText.__proto__ = superclass), CreatejsText.prototype = Object.create(superclass && superclass.prototype), 
         CreatejsText.prototype.constructor = CreatejsText;
