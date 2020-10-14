@@ -1,8 +1,8 @@
 /*!
- * Pixim-animate-player - v2.0.2
+ * Pixim-animate-player - v2.1.0
  * 
  * @require pixi.js v5.3.2
- * @require @tawaship/pixim.js v1.7.4
+ * @require @tawaship/pixim.js v1.8.0
  * @author tawaship (makazu.mori@gmail.com)
  * @license MIT
  */
@@ -1233,9 +1233,11 @@ this.Pixim = this.Pixim || {}, function(exports, pixi_js, _Pixim) {
                         }));
                     }));
                 }, Player.prototype.play = function() {
-                    return window.createjs.Ticker.addEventListener("tick", this._handleTick), this;
+                    return this._piximData.container.appendChild(this._piximData.view), window.createjs.Ticker.addEventListener("tick", this._handleTick), 
+                    this;
                 }, Player.prototype.stop = function() {
-                    return window.createjs.Ticker.removeEventListener("tick", this._handleTick), this;
+                    return this._piximData.view.parentNode && this._piximData.view.parentNode.removeChild(this._piximData.view), 
+                    window.createjs.Ticker.removeEventListener("tick", this._handleTick), this;
                 }, Player.prototype._handleTick = function(e) {
                     this._stage.updateForPixi(e), this.app.render();
                 }, Player;

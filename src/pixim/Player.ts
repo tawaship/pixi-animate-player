@@ -111,12 +111,16 @@ namespace Pixim {
 			}
 			
 			play() {
+				this._piximData.container.appendChild(this._piximData.view);
 				window.createjs.Ticker.addEventListener('tick', this._handleTick);
 				
 				return this;
 			}
 			
 			stop() {
+				if (this._piximData.view.parentNode) {
+					this._piximData.view.parentNode.removeChild(this._piximData.view);
+				}
 				window.createjs.Ticker.removeEventListener('tick', this._handleTick);
 				
 				return this;
