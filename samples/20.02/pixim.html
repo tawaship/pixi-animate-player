@@ -64,12 +64,7 @@
 							crossOrigin: false
 						})
 						.then(function(lib) {
-							player.fullScreen({
-								x: 0,
-								y: 0,
-								width: lib.properties.width,
-								height: lib.properties.height
-							});
+							player.fullScreen();
 							player.play();
 						});
 				});

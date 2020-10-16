@@ -49,6 +49,9 @@
 					
 					var pRatio = window.devicePixelRatio || 1;
 					var player = new PIXI.animate.Player(data.comp, 'game', path, {
+						useSynchedTimeline: true,
+						useMotionGuide: true
+					}, {
 						antialias: true,
 						resolution: pRatio,
 						forceCanvas: true
@@ -56,9 +59,7 @@
 					
 					player
 						.prepareAsync({
-							useSynchedTimeline: true,
-							crossOrigin: false,
-							useMotionGuide: true
+							crossOrigin: false
 						})
 						.then(function(lib) {
 							player.app.view.style.width = lib.properties.width + 'px';

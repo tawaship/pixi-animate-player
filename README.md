@@ -11,9 +11,9 @@ A module for playing content published by Adobe Animate with "[Pixim.js](https:/
 
 ## Support version
 
-- A complete set of content published with Adobe Animate version 20.02 / 20.5.1
+- A complete set of content published with Adobe Animate version 20.02 | 20.5.1
 - pixi.js 5.3.2
-- Pixim.js 1.7.x
+- Pixim.js 1.7.x | 1.8.x
 
 I have not confirmed the operation on other versions.
 
