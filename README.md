@@ -9,7 +9,7 @@ A module for playing content published by Adobe Animate with "[pixi.js](https://
 ## Core module
 [@tawaship/pixi-animate-core](https://tawaship.github.io/pixi-animate-core/)
 
-## Support version
+## Supported version
 
 - A complete set of content published with Adobe Animate version 20.02 | 20.5.1
 - pixi.js 5.3.2
