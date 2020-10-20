@@ -1,6 +1,6 @@
 {
-  "name": "Pixim-animate-player",
-  "version": "2.1.1",
+  "name": "pixi-animate-player",
+  "version": "2.1.2",
   "description": "",
   "main": "index.js",
   "directories": {
@@ -18,14 +18,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tawaship/Pixim-createjs-player.git"
+    "url": "git+https://github.com/tawaship/pixi-animate-player.git"
   },
   "author": "tawaship",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tawaship/Pixim-createjs-player/issues"
+    "url": "https://github.com/tawaship/pixi-animate-player/issues"
   },
-  "homepage": "https://tawaship.github.io/Pixim-createjs-player/",
+  "homepage": "https://tawaship.github.io/pixi-animate-player/",
   "devDependencies": {
     "@rollup/plugin-buble": "^0.21.3",
     "@rollup/plugin-commonjs": "^11.0.2",

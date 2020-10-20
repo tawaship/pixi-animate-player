@@ -5,6 +5,8 @@
   },
   "typedocOptions": {
     "mode": "file",
+    "readme": "README.pixim.md",
+    "name": "pixim-animate-player",
     "out": "docs/pixim/",
     "moduleResolution": "node",
     "gitRevision": "master",

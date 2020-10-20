@@ -5,7 +5,7 @@
   },
   "typedocOptions": {
     "mode": "file",
-    "readme": "docs/README.pixi.md",
+    "readme": "README.md",
     "name": "pixi-animate-player",
     "out": "docs/pixi/",
     "moduleResolution": "node",

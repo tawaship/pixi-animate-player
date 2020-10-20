@@ -1,5 +1,5 @@
 /*!
- * Pixim-animate-player - v2.1.1
+ * Pixim-animate-player - v2.1.2
  * 
  * @require pixi.js v5.3.2
  * @require @tawaship/pixim.js v1.8.0
@@ -9,7 +9,7 @@
 this.Pixim = this.Pixim || {}, function(exports, pixi_js, _Pixim) {
     "use strict";
     /*!
-     * @tawaship/pixi-animate-core - v2.0.3
+     * @tawaship/pixi-animate-core - v2.0.2
      * 
      * @require pixi.js v5.3.2
      * @author tawaship (makazu.mori@gmail.com)
