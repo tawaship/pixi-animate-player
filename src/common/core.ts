@@ -11,6 +11,13 @@ declare const window: any;
  */
 export function initStage(options: IPrepareOption = {}) {
 	if (!options.useSynchedTimeline) {
+		Object.defineProperties(window.createjs.Stage.prototype, {
+			updateForPixi: {
+				value: function(e) {
+					this._tick(e);
+				}
+			}
+		});
 		Object.defineProperties(window.createjs.StageGL.prototype, {
 			updateForPixi: {
 				value: function(e) {

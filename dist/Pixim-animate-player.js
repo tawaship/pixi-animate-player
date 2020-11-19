@@ -1,5 +1,5 @@
 /*!
- * Pixim-animate-player - v2.1.2
+ * Pixim-animate-player - v2.1.3
  * 
  * @require pixi.js v5.3.2
  * @require @tawaship/pixim.js v1.8.0
@@ -9,7 +9,7 @@
 this.Pixim = this.Pixim || {}, function(exports, pixi_js, _Pixim) {
     "use strict";
     /*!
-     * @tawaship/pixi-animate-core - v2.0.2
+     * @tawaship/pixi-animate-core - v2.0.3
      * 
      * @require pixi.js v5.3.2
      * @author tawaship (makazu.mori@gmail.com)
@@ -1161,13 +1161,19 @@ this.Pixim = this.Pixim || {}, function(exports, pixi_js, _Pixim) {
                         void 0 === options && (options = {}), _isPrepare || (CreatejsMovieClip.selectUpdateFunc(options.useSynchedTimeline), 
                         options.useMotionGuide && window.createjs.MotionGuidePlugin.install(), _isPrepare = !0);
                     }(options), function(options) {
-                        void 0 === options && (options = {}), options.useSynchedTimeline || Object.defineProperties(window.createjs.StageGL.prototype, {
+                        void 0 === options && (options = {}), options.useSynchedTimeline || (Object.defineProperties(window.createjs.Stage.prototype, {
                             updateForPixi: {
                                 value: function(e) {
                                     this._tick(e);
                                 }
                             }
-                        });
+                        }), Object.defineProperties(window.createjs.StageGL.prototype, {
+                            updateForPixi: {
+                                value: function(e) {
+                                    this._tick(e);
+                                }
+                            }
+                        }));
                     }(options);
                 }
                 return superclass && (Player.__proto__ = superclass), Player.prototype = Object.create(superclass && superclass.prototype), 
