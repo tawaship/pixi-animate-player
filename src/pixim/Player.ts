@@ -1,4 +1,4 @@
-import { TAnimateLibrary, prepareAnimate, IPrepareOption, loadAssetAsync, ILoadAssetOption, TTickerData } from '@tawaship/pixi-animate-core';
+import { IAnimateLibrary, prepareAnimate, IPrepareOption, loadAssetAsync, ILoadAssetOption, ITickerData } from '@tawaship/pixi-animate-core';
 import { initStage } from '../common/core';
 import * as _Pixim from '@tawaship/pixim.js';
 
@@ -10,7 +10,7 @@ declare const window: any;
 namespace Pixim {
 	export namespace animate {
 		/**
-		 * @see https://tawaship.github.io/Pixim.js/classes/pixim.application.html
+		 * [[https://tawaship.github.io/Pixim.js/classes/pixim.application.html | Pixim.Application]]
 		 */
 		export class Player extends _Pixim.Application {
 			private _id: string;
@@ -22,17 +22,17 @@ namespace Pixim {
 			 * @param id "lib.properties.id" in Animate content.
 			 * @param rootName Root class name of Animate content.
 			 * @param basepath Directory path of Animate content.
-			 * @param pixiOptions Options of PIXI.Application.
-			 * @param piximOptions Options of Pixim.Application.
-			 * @see https://tawaship.github.io/pixi-animate-core/interfaces/iprepareoption.html
+			 * @param options {{https://tawaship.github.io/pixi-animate-core/interfaces/iprepareoption.html | PixiAnimateCore.IPrepareOption}}
+			 * @param pixiOptions Options of [[http://pixijs.download/release/docs/PIXI.Application.html | PIXI.Application]].
+			 * @param piximOptions [[https://tawaship.github.io/Pixim.js/interfaces/pixim.iapplicationoption.html | Pixim.IApplicationOption]]
 			 */
-			constructor(id: string, rootName: string, basepath: string, options: IPrepareOption = {}, pixiOptions: Object = {}, piximOptions: _Pixim.TApplicationOption = {}) {
+			constructor(id: string, rootName: string, basepath: string, options: IPrepareOption = {}, pixiOptions: Object = {}, piximOptions: _Pixim.IApplicationOption = {}) {
 				const comp = window.AdobeAn.getComposition(id);
 				if (!comp) {
 					throw new Error('no composition');
 				}
 				
-				const lib: TAnimateLibrary = comp.getLibrary();
+				const lib: IAnimateLibrary = comp.getLibrary();
 				const root = lib[rootName];
 				if (!root) {
 					throw new Error('no root class');
@@ -62,12 +62,12 @@ namespace Pixim {
 			
 			/**
 			 * Prepare createjs content published with Adobe Animate.
-			 * @async
-			 * @see https://tawaship.github.io/pixi-animate-core/interfaces/iloadassetoption.html
+			 * 
+			 * [[https://tawaship.github.io/pixi-animate-core/interfaces/iloadassetoption.html | PixiAnimateCore.ILoadAssetOption]]
 			 */
 			prepareAsync(options: ILoadAssetOption = {}) {
 				return loadAssetAsync(this._id, this._basepath, options)
-					.then((lib: TAnimateLibrary) => {
+					.then((lib: IAnimateLibrary) => {
 						const exportRoot = new this._rootClass();
 						
 						this._stage = new lib.Stage();
@@ -126,7 +126,7 @@ namespace Pixim {
 				return this;
 			}
 			
-			private _handleTick(e: TTickerData) {
+			private _handleTick(e: ITickerData) {
 				this._stage.updateForPixi(e);
 				this.app.render();
 			}

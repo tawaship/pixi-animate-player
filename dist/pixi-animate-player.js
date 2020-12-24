@@ -1,5 +1,5 @@
 /*!
- * pixi-animate-player - v2.1.3
+ * pixi-animate-player - v2.2.0
  * 
  * @require pixi.js v5.3.2
  * @author tawaship (makazu.mori@gmail.com)
@@ -8,7 +8,7 @@
 this.PIXI = this.PIXI || {}, function(exports, _PIXI) {
     "use strict";
     /*!
-     * @tawaship/pixi-animate-core - v2.0.3
+     * @tawaship/pixi-animate-core - v2.1.2
      * 
      * @require pixi.js v5.3.2
      * @author tawaship (makazu.mori@gmail.com)
