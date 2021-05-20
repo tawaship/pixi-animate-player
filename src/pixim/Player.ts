@@ -10,7 +10,7 @@ declare const window: any;
 namespace Pixim {
 	export namespace animate {
 		/**
-		 * [[https://tawaship.github.io/Pixim.js/classes/pixim.application.html | Pixim.Application]]
+		 * [[https://tawaship.github.io/Pixim.js/classes/modules_application.application.html | Pixim.Application]]
 		 */
 		export class Player extends _Pixim.Application {
 			private _id: string;
@@ -24,7 +24,7 @@ namespace Pixim {
 			 * @param basepath Directory path of Animate content.
 			 * @param options {{https://tawaship.github.io/pixi-animate-core/interfaces/iprepareoption.html | PixiAnimateCore.IPrepareOption}}
 			 * @param pixiOptions Options of [[http://pixijs.download/release/docs/PIXI.Application.html | PIXI.Application]].
-			 * @param piximOptions [[https://tawaship.github.io/Pixim.js/interfaces/pixim.iapplicationoption.html | Pixim.IApplicationOption]]
+			 * @param piximOptions [[https://tawaship.github.io/Pixim.js/interfaces/modules_application.iapplicationoption.html | Pixim.IApplicationOption]]
 			 */
 			constructor(id: string, rootName: string, basepath: string, options: IPrepareOption = {}, pixiOptions: Object = {}, piximOptions: _Pixim.IApplicationOption = {}) {
 				const comp = window.AdobeAn.getComposition(id);
